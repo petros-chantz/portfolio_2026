@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
-import { H1, H2, H3, P, InlineLink } from "../ui/typography";
+import { H1, H2, H3, P, InlineLink } from "../ui/Typography";
 import { ButtonLink } from "../ui/Button";
 
 function stripCta(href: string) {
