@@ -17,7 +17,11 @@ export function Markdown({ value }: { value: string }) {
         h1: ({ children }) => <H1>{children}</H1>,
         h2: ({ children }) => <H2>{children}</H2>,
         h3: ({ children }) => <H3>{children}</H3>,
-        p: ({ children }) => <P>{children}</P>,
+        p: ({ children }) => (
+          <p className="mt-4 leading-relaxed text-(--color-text-primary)">
+            {children}
+          </p>
+        ),
 
         // Links: internal links styled like your system.
         // Convention: add ?cta=1 to render as a "button link".
