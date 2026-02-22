@@ -24,7 +24,7 @@ export function PageNavbar() {
 
       <div className="flex items-center gap-4">
         <a
-          href="mailto:your@email.com"
+          href="mailto:petros.chantz@gmail.com"
           className="
           text-sm
             underline underline-offset-4
@@ -37,7 +37,7 @@ export function PageNavbar() {
         </a>
 
         <a
-          href="https://linkedin.com/in/yourprofile"
+          href="https://www.linkedin.com/in/petroschantz/"
           target="_blank"
           rel="noopener noreferrer"
           className="

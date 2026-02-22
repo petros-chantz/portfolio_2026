@@ -61,14 +61,14 @@ export function Home() {
         {/* Contact */}
         <div className="flex items-center gap-4 pt-4 text-sm">
           <a
-            href="mailto:your@email.com"
+            href="mailto:petros.chantz@gmail.com"
             className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
           >
             Email me
           </a>
 
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/petroschantz/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"

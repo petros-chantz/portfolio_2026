@@ -18,7 +18,7 @@ export function MobileTopBar() {
 
           <div className="flex items-center gap-4">
             <a
-              href="mailto:your@email.com"
+              href="mailto:petros.chantz@gmail.com"
               className="
                 text-sm underline underline-offset-4
                 text-(--color-text-secondary)
@@ -30,7 +30,7 @@ export function MobileTopBar() {
             </a>
 
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/petroschantz/"
               target="_blank"
               rel="noopener noreferrer"
               className="
