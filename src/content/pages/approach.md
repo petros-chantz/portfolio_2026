@@ -1,10 +1,7 @@
 ---
 title: "Design Approach"
-summary: "Designers in today's world are compelted to design for a world that is mutli-faceted, complex and toof often ambigious. I strive to design, lead and mentor based on a set of core valus and principles that underpin every design action and decision I make."
 ---
 
-### Principles
+Designers today are compelled to design for contexts shaped by competing constraints, shifting meanings, and inevitable uncertainty. Within organisations, designers also face the reality that design as a discipline is too often threatened and diluted into mere visual or graphic storytelling, an aesthetic medium.
 
-- Ship small increments
-- Reduce moving parts
-- Document decisions
+I strive to design, lead, and mentor through a set of core values and principles that underpin every action and decision I make.
