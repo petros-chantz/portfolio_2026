@@ -6,8 +6,10 @@ import { Vision } from "./pages/Vision";
 import { EssaysIndex } from "./pages/EssaysIndex";
 import { EssayPage } from "./pages/EssayPage";
 import { NotFound } from "./pages/NotFound";
+import { Presentation } from "./pages/Presentation";
 
 export const router = createBrowserRouter([
+  { path: "/presentation", element: <Presentation /> },
   {
     element: <AppLayout />,
     children: [

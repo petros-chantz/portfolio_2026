@@ -23,4 +23,7 @@ Disallow: /
 User-agent: ClaudeBot
 Disallow: /
 
+Disallow: /presentation
+Disallow: /private/
+
 Sitemap: https://yourdomain.com/sitemap.xml
