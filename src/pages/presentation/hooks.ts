@@ -63,12 +63,10 @@ export function useKeyboardControls(
 }
 
 export function useHint(enabled: boolean, ms: number) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(enabled);
 
   useEffect(() => {
     if (!enabled) return;
-
-    setShow(true);
     const t = window.setTimeout(() => setShow(false), ms);
     return () => window.clearTimeout(t);
   }, [enabled, ms]);

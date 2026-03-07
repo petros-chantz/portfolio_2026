@@ -49,8 +49,9 @@ function KeyHint({ show }: { show: boolean }) {
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <span className="inline-flex items-center gap-2">
-            Use
-            <span className="inline-flex items-center gap-1 rounded-md border border-black/10 bg-white px-2 py-1 text-[var(--color-text-primary)]">
+            <span className="hidden md:inline">Use</span>
+            <span className="md:hidden">Swipe</span>
+            <span className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-[var(--color-text-primary)]">
               <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </span>
@@ -64,9 +65,11 @@ function KeyHint({ show }: { show: boolean }) {
 function RestartButton({
   show,
   onRestart,
+  className = "",
 }: {
   show: boolean;
   onRestart: () => void;
+  className?: string;
 }) {
   return (
     <AnimatePresence initial={false}>
@@ -75,9 +78,8 @@ function RestartButton({
           key="restart"
           type="button"
           onClick={onRestart}
-          className="
+          className={`
             group
-            absolute right-0 top-1/2 -translate-y-1/2
             inline-flex items-center gap-2
             rounded-full border border-black/10 bg-white
             px-3 py-1.5
@@ -85,7 +87,8 @@ function RestartButton({
             text-[var(--color-text-primary)]
             transition
             hover:bg-black/[0.02]
-          "
+            ${className}
+          `}
           aria-label="Restart presentation"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -138,11 +141,36 @@ export function PresentationViewer() {
   usePreloadNeighbors(isValid, slides, index);
   useKeyboardControls(isValid, { prev, next, restart });
 
+  // Mobile note: show longer than the swipe/use hint
+  const showMobileNote = useHint(isValid, HINT_MS + 5000);
+
+  // Click navigation: left half = prev, right half = next
   const onClickSlide = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     if (x < rect.width / 2) prev();
     else next();
+  };
+
+  // Mobile swipe navigation
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchStartX(e.touches[0]?.clientX ?? null);
+  };
+
+  const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? touchStartX;
+    const dx = endX - touchStartX;
+
+    // threshold to avoid accidental swipes
+    const THRESHOLD = 40;
+
+    if (dx > THRESHOLD) prev();
+    if (dx < -THRESHOLD) next();
+
+    setTouchStartX(null);
   };
 
   if (!isValid) return <NotFound />;
@@ -161,11 +189,42 @@ export function PresentationViewer() {
       {/* Viewport area (no scrolling) */}
       <main className="h-dvh px-6 pb-8 pt-20">
         <div className="mx-auto flex h-full w-full max-w-6xl flex-col">
+          {/* Mobile-only note above slides (centered) */}
+          <div className="relative md:hidden mt-2 mb-3 h-8 px-4">
+            <AnimatePresence>
+              {showMobileNote && (
+                <motion.p
+                  className="
+          absolute inset-x-0 top-12
+          mx-auto
+          max-w-[16rem]
+          text-center
+          italic
+          text-sm
+          text-[var(--color-text-secondary)]
+        "
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                >
+                  <span className="font-medium text-[var(--color-text-primary)]">
+                    Note:
+                  </span>{" "}
+                  For optimal viewing experience, please move to a desktop or
+                  laptop.
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+
           {/* Slide card area centered */}
           <div className="min-h-0 flex flex-1 items-center justify-center">
             <div
               className="mx-auto w-full max-w-[1080px] desktop:max-w-[1440px] cursor-pointer select-none"
               onClick={onClickSlide}
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
               role="presentation"
             >
               <div
@@ -198,6 +257,11 @@ export function PresentationViewer() {
             <div className="relative mx-auto w-full max-w-[1440px]">
               {/* Center arrow nav + counter (always centered) */}
               <div className="flex items-center justify-center gap-3">
+                {/* Mobile: show restart above arrows (only on last slide) */}
+                <div className="md:hidden absolute left-1/2 -translate-x-1/2 -top-10">
+                  <RestartButton show={isLast} onRestart={restart} />
+                </div>
+
                 <button
                   type="button"
                   onClick={prev}
@@ -243,7 +307,14 @@ export function PresentationViewer() {
                 </button>
               </div>
 
-              <RestartButton show={isLast} onRestart={restart} />
+              {/* Desktop restart stays on the right */}
+              <div className="hidden md:block">
+                <RestartButton
+                  show={isLast}
+                  onRestart={restart}
+                  className="absolute right-0 top-1/2 -translate-y-1/2"
+                />
+              </div>
             </div>
           </div>
         </div>
