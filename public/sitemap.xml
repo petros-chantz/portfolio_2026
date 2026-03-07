@@ -3,24 +3,24 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 >
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://petros.work/</loc>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/approach</loc>
+    <loc>https://petros.work/approach</loc>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/vision</loc>
+    <loc>https://petros.work/vision</loc>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/essays</loc>
+    <loc>https://petros.work/essays</loc>
   </url>
 
   <!-- Essays -->
   <url>
-    <loc>https://yourdomain.com/essays/why-i-build</loc>
+    <loc>https://petros.work/essays/why-i-build</loc>
     <lastmod>2026-01-15</lastmod>
   </url>
 </urlset>

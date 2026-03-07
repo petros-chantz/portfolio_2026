@@ -26,4 +26,4 @@ Disallow: /
 Disallow: /presentation
 Disallow: /private/
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://petros.work/sitemap.xml
