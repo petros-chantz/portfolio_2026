@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /presentation
+Disallow: /private/
+Sitemap: https://petros.work/sitemap.xml
 
 # Known AI crawlers (best-effort blocks)
 User-agent: GPTBot
@@ -22,8 +25,3 @@ Disallow: /
 
 User-agent: ClaudeBot
 Disallow: /
-
-Disallow: /presentation
-Disallow: /private/
-
-Sitemap: https://petros.work/sitemap.xml

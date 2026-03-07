@@ -133,10 +133,10 @@ export function Presentation() {
   if (!isValid) return <NotFound />;
 
   return (
-    <div className="h-dvh w-full bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <div className="h-dvh w-full bg-(--color-bg) text-(--color-text-primary)">
       {/* Top navbar wrapper — match your normal pages */}
       <div className="fixed left-0 right-0 top-0 z-20 w-full">
-        <div className="bg-[var(--color-bg)]">
+        <div className="bg-(--color-bg)">
           <div className="px-5">
             <PageNavbar />
           </div>
@@ -149,7 +149,7 @@ export function Presentation() {
           {/* Slide card area centered */}
           <div className="min-h-0 flex flex-1 items-center justify-center">
             <div
-              className="mx-auto w-full max-w-[1440px] cursor-pointer select-none"
+              className="mx-auto w-full max-w-360 cursor-pointer select-none"
               onClick={onClickSlide}
               role="presentation"
             >
@@ -184,7 +184,7 @@ export function Presentation() {
                         bg-white/80
                         px-3 py-2
                         text-sm
-                        text-[var(--color-text-secondary)]
+                        text-(--color-text-secondary)
                         backdrop-blur-md
                         shadow-[0_6px_20px_rgba(0,0,0,0.12)]
                       "
@@ -195,7 +195,7 @@ export function Presentation() {
                     >
                       <span className="inline-flex items-center gap-2">
                         Use
-                        <span className="inline-flex items-center gap-1 rounded-md border border-black/10 bg-white px-2 py-1 text-[var(--color-text-primary)]">
+                        <span className="inline-flex items-center gap-1 rounded-md border border-black/10 bg-white px-2 py-1 text-(--color-text-primary)">
                           <ArrowLeftIcon
                             className="h-4 w-4"
                             aria-hidden="true"
