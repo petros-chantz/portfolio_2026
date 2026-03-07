@@ -6,10 +6,10 @@ import { VisionPage } from "./pages/vision/VisionPage";
 //import { EssaysIndex } from "./pages/essay/EssaysIndex";
 //import { EssayPage } from "./pages/essay/EssayPage";
 import { NotFound } from "./pages/NotFound";
-import { Presentation } from "./pages/Presentation";
+import { PresentationViewer } from "./pages/presentation/PresentationViewer";
 
 export const router = createBrowserRouter([
-  { path: "/presentation", element: <Presentation /> },
+  { path: "/presentation", element: <PresentationViewer /> },
   {
     element: <AppLayout />,
     children: [

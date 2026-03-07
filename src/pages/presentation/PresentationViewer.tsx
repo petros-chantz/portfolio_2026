@@ -1,0 +1,253 @@
+// src/presentation/PresentationViewer.tsx
+import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUturnLeftIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/solid";
+
+import { NotFound } from "../NotFound";
+import { PageNavbar } from "../../ui/PageNavbar";
+
+import {
+  getAllowedKeys,
+  HINT_MS,
+  SLIDE_COUNT,
+  pad2,
+  slideUrl,
+} from "./presentation.config";
+import {
+  useHint,
+  useKeyboardControls,
+  useNoIndex,
+  usePreloadNeighbors,
+} from "./hooks";
+
+function KeyHint({ show }: { show: boolean }) {
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          className="
+            pointer-events-none
+            absolute left-1/2 top-6 -translate-x-1/2
+            rounded-full
+            bg-white/80
+            px-3 py-2
+            text-sm
+            text-[var(--color-text-secondary)]
+            backdrop-blur-md
+            shadow-[0_6px_20px_rgba(0,0,0,0.12)]
+          "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          <span className="inline-flex items-center gap-2">
+            Use
+            <span className="inline-flex items-center gap-1 rounded-md border border-black/10 bg-white px-2 py-1 text-[var(--color-text-primary)]">
+              <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+            </span>
+          </span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function RestartButton({
+  show,
+  onRestart,
+}: {
+  show: boolean;
+  onRestart: () => void;
+}) {
+  return (
+    <AnimatePresence initial={false}>
+      {show && (
+        <motion.button
+          key="restart"
+          type="button"
+          onClick={onRestart}
+          className="
+            group
+            absolute right-0 top-1/2 -translate-y-1/2
+            inline-flex items-center gap-2
+            rounded-full border border-black/10 bg-white
+            px-3 py-1.5
+            text-xs
+            text-[var(--color-text-primary)]
+            transition
+            hover:bg-black/[0.02]
+          "
+          aria-label="Restart presentation"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          <ArrowUturnLeftIcon
+            className="
+              h-4 w-4
+              text-black
+              transition-transform duration-200 ease-out
+              group-hover:-translate-x-1
+            "
+            aria-hidden="true"
+          />
+          Restart{" "}
+          <span className="text-[10px] text-[var(--color-text-secondary)]">
+            R
+          </span>
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
+export function PresentationViewer() {
+  const [searchParams] = useSearchParams();
+  const key = searchParams.get("key") ?? "";
+
+  // Gate without early returns before hooks
+  const allowed = useMemo(() => getAllowedKeys(), []);
+  const isValid = allowed.has(key);
+
+  const slides = useMemo(
+    () => Array.from({ length: SLIDE_COUNT }, (_, idx) => slideUrl(idx)),
+    [],
+  );
+
+  const [index, setIndex] = useState(0);
+
+  const canPrev = index > 0;
+  const isLast = index === slides.length - 1;
+
+  const prev = () => setIndex((v) => Math.max(0, v - 1));
+  const next = () => setIndex((v) => Math.min(slides.length - 1, v + 1));
+  const restart = () => setIndex(0);
+
+  useNoIndex(isValid);
+  const showHint = useHint(isValid, HINT_MS);
+  usePreloadNeighbors(isValid, slides, index);
+  useKeyboardControls(isValid, { prev, next, restart });
+
+  const onClickSlide = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) prev();
+    else next();
+  };
+
+  if (!isValid) return <NotFound />;
+
+  return (
+    <div className="h-dvh w-full bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+      {/* Top navbar wrapper — match your normal pages exactly */}
+      <div className="fixed left-0 right-0 top-0 z-20 w-full">
+        <div className="bg-[var(--color-bg)]">
+          <div className="px-5">
+            <PageNavbar />
+          </div>
+        </div>
+      </div>
+
+      {/* Viewport area (no scrolling) */}
+      <main className="h-dvh px-6 pb-8 pt-20">
+        <div className="mx-auto flex h-full w-full max-w-6xl flex-col">
+          {/* Slide card area centered */}
+          <div className="min-h-0 flex flex-1 items-center justify-center">
+            <div
+              className="mx-auto w-full max-w-[1080px] desktop:max-w-[1440px] cursor-pointer select-none"
+              onClick={onClickSlide}
+              role="presentation"
+            >
+              <div
+                className="
+                  relative
+                  w-full
+                  aspect-video
+                  max-h-[68dvh]
+                  overflow-hidden
+                  rounded-xl
+                  bg-[var(--color-bg)]
+                  border border-black/5
+                  shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_24px_rgba(0,0,0,0.08)]
+                "
+              >
+                <img
+                  src={slides[index]}
+                  alt={`Slide ${index + 1}`}
+                  className="h-full w-full object-contain"
+                  draggable={false}
+                />
+
+                <KeyHint show={showHint} />
+              </div>
+            </div>
+          </div>
+
+          {/* Controls BELOW the slide */}
+          <div className="mt-6">
+            <div className="relative mx-auto w-full max-w-[1440px]">
+              {/* Center arrow nav + counter (always centered) */}
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={prev}
+                  disabled={!canPrev}
+                  className="
+                    inline-flex items-center justify-center
+                    rounded-full border border-black/10 bg-white
+                    p-2
+                    transition
+                    hover:bg-black/[0.02]
+                    disabled:opacity-40
+                  "
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeftIcon
+                    className="h-6 w-6 text-black"
+                    aria-hidden="true"
+                  />
+                </button>
+
+                <div className="text-sm tabular-nums text-[var(--color-text-secondary)]">
+                  {pad2(index + 1)} / {pad2(slides.length)}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={isLast}
+                  className="
+                    inline-flex items-center justify-center
+                    rounded-full border border-black/10 bg-white
+                    p-2
+                    transition
+                    hover:bg-black/[0.02]
+                    disabled:opacity-40
+                  "
+                  aria-label="Next slide"
+                >
+                  <ChevronRightIcon
+                    className="h-6 w-6 text-black"
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+
+              <RestartButton show={isLast} onRestart={restart} />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

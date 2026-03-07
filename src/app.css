@@ -32,3 +32,7 @@ input[type="submit"],
 input[type="button"] {
   cursor: pointer;
 }
+
+@theme {
+  --breakpoint-desktop: 110rem; /* 1760px */
+}
