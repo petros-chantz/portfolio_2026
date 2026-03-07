@@ -24,3 +24,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a[href],
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+}
