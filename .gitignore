@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private presentation assets (do not commit)
+public/private/
+public/private/slides/
+public/private/slides/*.png
