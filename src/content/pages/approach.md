@@ -1,5 +1,5 @@
 ---
-title: "Design Approach"
+title: "Design approach"
 ---
 
 Designers today are compelled to design for contexts shaped by competing constraints, shifting meanings, and inevitable uncertainty. Within organisations, designers also face the reality that design as a discipline is too often threatened and diluted into mere visual or graphic storytelling, an aesthetic medium.

@@ -82,7 +82,7 @@ export function Nav() {
       </NavLink>
 
       {/* Essays — arrow only when inactive */}
-      <NavLink
+      {/* <NavLink
         to="/essays"
         className={({ isActive }) =>
           `group ${itemBase} flex items-center justify-between ${
@@ -110,7 +110,7 @@ export function Nav() {
             )}
           </>
         )}
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 }

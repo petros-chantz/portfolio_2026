@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getAllEssays } from "../content.essays";
+import { getAllEssays } from "../../content.essays";
 
 export function EssaysIndex() {
   const essays = getAllEssays();

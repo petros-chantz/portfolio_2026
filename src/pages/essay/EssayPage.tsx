@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { getEssayBySlug } from "../content.essays";
-import { Markdown } from "../markdown/Markdown";
+import { getEssayBySlug } from "../../content.essays";
+import { Markdown } from "../../markdown/Markdown";
 
 export function EssayPage() {
   const { slug } = useParams();
