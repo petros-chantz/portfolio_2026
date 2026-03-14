@@ -1,29 +1,55 @@
-import { Seo } from "../../seo/Seo";
+import { useMemo } from "react";
 import { getPage } from "../../content.pages";
-import { VISION } from "./Vision.data";
+import { Markdown } from "../../markdown/Markdown";
+import { Seo } from "../../seo/Seo";
+
+const SITE_URL = "https://petros.work";
 
 export function VisionPage() {
-  // Optional: if you already have frontmatter title in vision.md later,
-  // this will automatically pick it up. For now, it falls back to VISION.title.
   const page = getPage("vision");
-  const titleText = page?.title?.trim() || VISION.title;
+
+  const canonical = `${SITE_URL}/vision`;
+  const ogImage = `${SITE_URL}/og.png`;
+
+  const seoTitle = useMemo(() => {
+    const base = "Petros Chantzopoulos";
+    const pageTitle = page?.title?.trim();
+    return pageTitle ? `${pageTitle} — ${base}` : `Vision — ${base}`;
+  }, [page?.title]);
+
+  const seoDescription =
+    "A perspective on what products are becoming: systems, services, and interaction quality in organisational contexts.";
+
+  if (!page) {
+    return (
+      <div className="space-y-2">
+        <Seo
+          title="Vision — Petros Chantzopoulos"
+          description={seoDescription}
+          canonical={canonical}
+          ogImage={ogImage}
+        />
+        <p className="text-base text-[var(--color-text-primary)]">
+          Missing page: <code>vision.md</code>
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <main className="space-y-12">
+    <div className="space-y-10 pb-16">
       <Seo
-        title={`${titleText} — Petros Chantzopoulos`}
-        description={VISION.description}
-        canonical={VISION.canonical}
-        ogImage={VISION.ogImage}
+        title={seoTitle}
+        description={seoDescription}
+        canonical={canonical}
+        ogImage={ogImage}
       />
 
-      <header className="space-y-4">
-        <h1 className="text-4xl font-semibold tracking-tight">{titleText}</h1>
-
-        <p className="max-w-2xl text-lg leading-relaxed text-[var(--color-text-primary)]">
-          {VISION.comingSoonBody}
-        </p>
+      <header className="space-y-1">
+        <h1 className="text-3xl font-semibold">{page.title}</h1>
       </header>
-    </main>
+
+      <Markdown value={page.content} />
+    </div>
   );
 }
