@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Nav } from "./Nav";
 import { PageNavbar } from "./PageNavbar";
@@ -11,6 +11,7 @@ export function AppLayout() {
 
   return (
     <div className="min-h-dvh">
+      <ScrollRestoration />
       {/* Mobile top bar (only on non-home pages) */}
       {!isHome && <MobileTopBar />}
 
