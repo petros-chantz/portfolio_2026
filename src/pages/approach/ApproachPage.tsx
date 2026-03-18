@@ -3,6 +3,8 @@ import { Seo } from "../../seo/Seo";
 import { APPROACH, FAQS, PRINCIPLES } from "./approach.data";
 import { FaqItem } from "./components/FaqItem";
 import { PrincipleCard } from "./components/PrincipleCard";
+import { PinnedPhotoCluster } from "./components/PinnedPhotoCluster";
+import { PINNED_PHOTOS } from "./pinnedPhotos.data";
 
 const SITE_URL = "https://petros.work";
 
@@ -33,15 +35,20 @@ export function ApproachPage() {
         ogImage={ogImage}
       />
 
-      <header className="space-y-4">
-        <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
+      {/* Hero / intro with pinned photos */}
+      <div className="relative overflow-visible">
+        <PinnedPhotoCluster photos={PINNED_PHOTOS} />
 
-        <div className="space-y-4 text-lg leading-relaxed text-[var(--color-text-primary)]">
-          {APPROACH.intro.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
-      </header>
+        <header className="relative z-10 space-y-4 pt-[230px] md:pt-[250px]">
+          <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
+
+          <div className="space-y-4 text-lg leading-relaxed text-[var(--color-text-primary)]">
+            {APPROACH.intro.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        </header>
+      </div>
 
       <section className="space-y-6 pt-4" aria-label="Principles">
         <div className="grid gap-12 md:grid-cols-2">
