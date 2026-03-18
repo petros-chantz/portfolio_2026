@@ -6,7 +6,8 @@ export const HOME = {
   canonical: "https://petros.work/",
   ogImage: "https://petros.work/og.png",
   contact: {
-    email: "petros.chantz@gmail.com",
+    emailUser: "petros.chantz",
+    emailDomain: "gmail.com",
     linkedin: "https://www.linkedin.com/in/petroschantz/",
   },
   about: [

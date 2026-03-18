@@ -1,6 +1,8 @@
 import { Seo } from "../../seo/Seo";
 import { HOME } from "./Home.data";
 
+const email = `${HOME.contact.emailUser}@${HOME.contact.emailDomain}`;
+
 export function HomePage() {
   return (
     <main className="space-y-10 pt-10">
@@ -41,7 +43,7 @@ export function HomePage() {
         {/* Contact */}
         <div className="flex items-center gap-4 pt-4 text-sm">
           <a
-            href={`mailto:${HOME.contact.email}`}
+            href={`mailto:${email}`}
             className="underline underline-offset-4 text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-primary)]"
           >
             Email me
