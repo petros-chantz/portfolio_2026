@@ -6,9 +6,8 @@ export const VISION = {
     "Vision and principles behind Petros Chantzopoulos’ work as a strategic digital product designer.",
   intro:
     "“What is a product?” has become a harder question to answer with confidence.",
-
   body: [
-    "Many things that used to be treated as distinct—products, services, systems—now show up as a single, interdependent experience. A train journey is not only “a service,” and an app is not only “a product.” What people encounter is a constellation of touchpoints: interfaces, physical artefacts, operational decisions, data flows, and social practices that together produce what the product is in use.",
+    " Many things that used to be treated as distinct—products, services, systems—now show up as a single, interdependent experience. A train journey is not only “a service,” and an app is not only “a product.” What people encounter is a constellation of touchpoints: interfaces, physical artefacts, operational decisions, data flows, and social practices that together produce what the product is in use.",
 
     "This erosion of boundaries is not simply conceptual. It changes how design work is organised and evaluated. When the “product” is distributed across many domains and disciplines, responsibility for quality becomes distributed too. That distribution can be productive—until it becomes a reason for fragmentation, where no one owns the experiential whole and coherence is negotiated away.",
 

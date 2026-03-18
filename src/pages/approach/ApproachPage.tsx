@@ -1,15 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
-import { getPage } from "../../content.pages";
-import { Markdown } from "../../markdown/Markdown";
 import { Seo } from "../../seo/Seo";
-import { FAQS, PRINCIPLES } from "./approach.data";
+import { APPROACH, FAQS, PRINCIPLES } from "./approach.data";
 import { FaqItem } from "./components/FaqItem";
 import { PrincipleCard } from "./components/PrincipleCard";
 
 const SITE_URL = "https://petros.work";
 
 export function ApproachPage() {
-  const page = getPage("approach");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const canonical = `${SITE_URL}/approach`;
@@ -17,10 +14,8 @@ export function ApproachPage() {
 
   const seoTitle = useMemo(() => {
     const base = "Petros Chantzopoulos";
-    const pageTitle = page?.title?.trim();
-    // Use the markdown title if it exists; otherwise fall back.
-    return pageTitle ? `${pageTitle} — ${base}` : `Approach — ${base}`;
-  }, [page?.title]);
+    return `${APPROACH.title} — ${base}`;
+  }, []);
 
   const seoDescription =
     "Approach to strategic digital product design: principles, decision-making, and collaboration.";
@@ -28,22 +23,6 @@ export function ApproachPage() {
   const onToggleFaq = useCallback((index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   }, []);
-
-  if (!page) {
-    return (
-      <div className="space-y-2">
-        <Seo
-          title="Approach — Petros Chantzopoulos"
-          description={seoDescription}
-          canonical={canonical}
-          ogImage={ogImage}
-        />
-        <p className="text-base text-[var(--color-text-primary)]">
-          Missing page: <code>approach.md</code>
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-10 pb-16">
@@ -54,11 +33,15 @@ export function ApproachPage() {
         ogImage={ogImage}
       />
 
-      <header className="space-y-1">
-        <h1 className="text-3xl font-semibold">{page.title}</h1>
-      </header>
+      <header className="space-y-4">
+        <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
 
-      <Markdown value={page.content} />
+        <div className="space-y-4 text-lg leading-relaxed text-[var(--color-text-primary)]">
+          {APPROACH.intro.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
+      </header>
 
       <section className="space-y-6 pt-4" aria-label="Principles">
         <div className="grid gap-12 md:grid-cols-2">
