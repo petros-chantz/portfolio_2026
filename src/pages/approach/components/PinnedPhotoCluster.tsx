@@ -6,7 +6,7 @@ type Props = {
 };
 
 const basePhoto =
-  "absolute rounded-[6px] object-cover shadow-[0_10px_24px_rgba(0,0,0,0.14)]";
+  "absolute rounded object-cover shadow-[0_2px_3px_rgba(0,0,0,0.08),0_14px_34px_rgba(0,0,0,0.14)]";
 
 export function PinnedPhotoCluster({ photos, className = "" }: Props) {
   return (
