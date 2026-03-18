@@ -14,7 +14,7 @@ export function PinnedPhotoCluster({ photos, className = "" }: Props) {
       aria-hidden="true"
       className={[
         "pointer-events-none absolute left-1/2 top-[24px] z-0",
-        "h-[260px] w-[min(1200px,95vw)] -translate-x-1/2",
+        "h-[260px] w-[min(980px,95vw)] -translate-x-1/2",
         "hidden md:block",
         className,
       ].join(" ")}

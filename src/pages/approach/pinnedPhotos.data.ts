@@ -13,7 +13,7 @@ export const PINNED_PHOTOS: readonly PinnedPhoto[] = [
   {
     src: "/approach/02.jpg",
     alt: "",
-    className: "left-[140px] top-[14px] h-[170px] w-[250px] rotate-[4deg]",
+    className: "left-[140px] top-[5px] h-[170px] w-[250px] rotate-[4deg]",
   },
   {
     src: "/approach/03.jpg",
@@ -23,7 +23,7 @@ export const PINNED_PHOTOS: readonly PinnedPhoto[] = [
   {
     src: "/approach/04.jpg",
     alt: "",
-    className: "right-[76px] top-[94px] h-[140px] w-[210px] rotate-[7deg]",
+    className: "right-[76px] z-10 top-[94px] h-[140px] w-[210px] rotate-[7deg]",
   },
   {
     src: "/approach/05.jpg",
