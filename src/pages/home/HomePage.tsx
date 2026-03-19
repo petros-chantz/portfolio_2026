@@ -24,7 +24,7 @@ export function HomePage() {
 
       {/* About */}
       <section
-        className="space-y-6 text-lg leading-relaxed tracking-wide"
+        className="space-y-6 text-base leading-relaxed tracking-wide"
         aria-label="About"
       >
         <div className="space-y-4">
@@ -32,7 +32,7 @@ export function HomePage() {
             <p key={paragraph}>{paragraph}</p>
           ))}
 
-          <p className="pt-6 text-base text-[var(--color-text-secondary)]">
+          <p className="pt-6 text-sm text-[var(--color-text-secondary)]">
             <span className="font-medium text-[var(--color-text-primary)]">
               Note:
             </span>{" "}
