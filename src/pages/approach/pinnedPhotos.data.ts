@@ -3,6 +3,7 @@ export type PinnedPhoto = {
   alt?: string;
   className: string;
   priority?: boolean;
+  bg?: string;
 };
 
 export const PINNED_PHOTOS: readonly PinnedPhoto[] = [
