@@ -25,8 +25,9 @@ export function PinnedPhotoCluster({ photos, className = "" }: Props) {
           src={p.src}
           alt={p.alt ?? ""}
           className={[basePhoto, p.className].join(" ")}
-          loading="lazy"
           draggable={false}
+          loading={p.priority ? "eager" : "lazy"}
+          decoding="async"
         />
       ))}
     </div>
