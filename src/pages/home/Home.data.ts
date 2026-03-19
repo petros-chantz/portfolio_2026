@@ -36,7 +36,7 @@ export const HOME = {
 
     [
       {
-        text: "I see design not only as problem-solving or interface-making, but as inquiry into what could be, what should be, and how products and services fit into everyday work. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people.",
+        text: "I see design not only as problem-solving or interface-making, but as inquiry into what could be and what should be. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people.",
       },
     ],
 

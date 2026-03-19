@@ -42,7 +42,7 @@ export function ApproachPage() {
         <header className="relative z-10 space-y-4 pt-[250px] md:pt-[290px]">
           <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
 
-          <div className="space-y-4 text-lg leading-relaxed text-[var(--color-text-primary)]">
+          <div className="space-y-4 text-base leading-relaxed text-[var(--color-text-primary)]">
             {APPROACH.intro.map((p) => (
               <p key={p}>{p}</p>
             ))}
