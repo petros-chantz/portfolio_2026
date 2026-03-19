@@ -28,8 +28,21 @@ export function HomePage() {
         aria-label="About"
       >
         <div className="space-y-4">
-          {HOME.about.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+          {HOME.about.map((paragraph, i) => (
+            <p key={i}>
+              {paragraph.map((part, j) =>
+                part.bold ? (
+                  <strong
+                    key={j}
+                    className="font-semibold text-[var(--color-text-primary)]"
+                  >
+                    {part.text}
+                  </strong>
+                ) : (
+                  <span key={j}>{part.text}</span>
+                ),
+              )}
+            </p>
           ))}
 
           <p className="pt-6 text-sm text-[var(--color-text-secondary)]">
