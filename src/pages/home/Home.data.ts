@@ -11,10 +11,11 @@ export const HOME = {
     linkedin: "https://www.linkedin.com/in/petroschantz/",
   },
   about: [
-    "I design digital products by balancing clarity, systems thinking, and craft, focusing on user needs, business goals, and long-term sustainability across interfaces, flows, and product ecosystems.",
-    "My approach blends research, prototyping, and collaboration—translating complex problems into simple experiences while aligning stakeholders, validating assumptions, and iterating thoughtfully through constraints, ambiguity, and evolving requirements.",
-    "I’m interested in work that values rigor, ethics, and impact, preferring durable solutions over trends, and environments where teams question assumptions, learn continuously, and care about outcomes.",
-    "Currently, I’m a Sr Product Designer at APS Group. I lead strategic initiatives for marketing technology product propositions, oversee design operations, conduct design research, mentor designers, and run a design internship programme.",
+    "I design intentional, strategic digital products for organisations navigating change.",
+    "With 5+ years in B2B product design, I’ve shipped internal tools, large platforms, and B2B e-commerce experiences. I’ve also designed new products shaped by legacy ERP constraints, adoption challenges, shadow IT, and low trust in systems.",
+    "I treat research as part an integral part of the design process. I frame decisions, test assumptions, and challenge stakeholder preconceptions while still shipping through iterative releases.",
+    "I see design not only as problem-solving or interface-making, but as inquiry into what could be, what should be, and how products and services fit into everyday work. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people.",
+    "Currently, I’m a Senior Product Designer at APS Group, leading strategic initiatives in data-heavy marketing operations tech. I also contribute to design ops, research and prototyping, mentor designers, and run an internship programme.",
   ],
-  note: "Due to privacy and NDA restrictions, I do not showcase my professional portfolio in the public domain. Feel free to request it for private viewing.",
+  note: "My recent projects can’t be shared publicly due to NDA/privacy constraints. I’m happy to share my portfolio privately on request.",
 } as const;
