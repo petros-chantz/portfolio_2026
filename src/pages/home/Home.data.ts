@@ -17,5 +17,5 @@ export const HOME = {
     "I see design not only as problem-solving or interface-making, but as inquiry into what could be, what should be, and how products and services fit into everyday work. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people.",
     "Currently, I’m a Senior Product Designer at APS Group, leading strategic initiatives in data-heavy marketing operations tech. I also contribute to design ops, research and prototyping, mentor designers, and run an internship programme.",
   ],
-  note: "My recent projects can’t be shared publicly due to NDA/privacy constraints. I’m happy to share my portfolio privately on request.",
+  note: "Most of my recent work is confidential and can’t be shared publicly. I’m happy to share my portfolio privately on request.",
 } as const;
