@@ -30,7 +30,7 @@ export const HOME = {
 
     [
       {
-        text: "I treat research as part an integral part of the design process. I frame decisions, test assumptions, and challenge stakeholder preconceptions while still shipping through iterative releases.",
+        text: "I treat research as an integral part of the design process. I frame decisions, test assumptions, and challenge stakeholder preconceptions while still shipping through iterative releases.",
       },
     ],
 
