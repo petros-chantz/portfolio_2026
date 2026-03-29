@@ -9,42 +9,64 @@ import {
 } from "@heroicons/react/24/solid";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
-import { PROJECTS, PROJECT_LIST } from "./Projects.data";
-import { ProjectCard } from "./components/ProjectCard";
+import { ESSAYS, ESSAY_LIST } from "./Essays.data";
+import { EssayCard } from "./components/EssayCard";
 
 type View = "grid" | "list";
 
-export function ProjectsPage() {
+export function EssaysPage() {
   const [view, setView] = useState<View>("grid");
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  const canonical = `${SITE_URL}/projects`;
+  const canonical = `${SITE_URL}/essays`;
   const ogImage = `${SITE_URL}/og.png`;
-  const seoTitle = `${PROJECTS.title} — Petros Chantzopoulos`;
+  const seoTitle = `${ESSAYS.title} — Petros Chantzopoulos`;
+
+  const filters = [
+    "All",
+    ...Array.from(new Set(ESSAY_LIST.map((essay) => essay.category))),
+  ];
+
+  const essays =
+    activeFilter === "All"
+      ? ESSAY_LIST
+      : ESSAY_LIST.filter((essay) => essay.category === activeFilter);
 
   return (
     <div className="space-y-8 pb-16">
       <Seo
         title={seoTitle}
-        description={PROJECTS.description}
+        description={ESSAYS.description}
         canonical={canonical}
         ogImage={ogImage}
       />
 
-      <h1 className="text-3xl font-semibold">{PROJECTS.title}</h1>
+      <header>
+        <h1 className="text-3xl font-semibold">{ESSAYS.title}</h1>
+      </header>
 
-      {/* Controls: tabs + view toggle */}
-      <div className="flex items-center justify-between">
-        {/* Tabs */}
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-(--color-text-primary) bg-black/6"
-          >
-            All
-          </button>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-1">
+          {filters.map((filter) => {
+            const isActive = activeFilter === filter;
+            return (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActiveFilter(filter)}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                  isActive
+                    ? "bg-black/6 text-(--color-text-primary)"
+                    : "text-(--color-text-secondary) hover:text-(--color-text-primary)"
+                }`}
+                aria-pressed={isActive}
+              >
+                {filter}
+              </button>
+            );
+          })}
         </div>
 
-        {/* View toggle */}
         <div className="flex items-center gap-0.5">
           <button
             type="button"
@@ -83,17 +105,16 @@ export function ProjectsPage() {
         </div>
       </div>
 
-      {/* Projects */}
       {view === "grid" ? (
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-          {PROJECT_LIST.map((project) => (
-            <ProjectCard key={project.slug} project={project} view="grid" />
+          {essays.map((essay) => (
+            <EssayCard key={essay.slug} essay={essay} view="grid" />
           ))}
         </div>
       ) : (
         <div className="space-y-1">
-          {PROJECT_LIST.map((project) => (
-            <ProjectCard key={project.slug} project={project} view="list" />
+          {essays.map((essay) => (
+            <EssayCard key={essay.slug} essay={essay} view="list" />
           ))}
         </div>
       )}

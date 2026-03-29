@@ -88,35 +88,14 @@ export function Nav() {
         Projects
       </NavLink>
 
-      {/* <NavLink
+      <NavLink
         to="/essays"
         className={({ isActive }) =>
-          `group ${itemBase} flex items-center justify-between ${
-            isActive ? itemActive : itemIdle
-          }`
+          `${itemBase} ${isActive ? itemActive : itemIdle}`
         }
       >
-        {({ isActive }) => (
-          <>
-            <span>Essays</span>
-
-            {!isActive && (
-              <ArrowLongRightIcon
-                className="
-                  h-4 w-4
-                  text-[var(--color-text-secondary)]
-                  opacity-0
-                  translate-x-1
-                  transition-all duration-200 ease-out
-                  group-hover:opacity-100
-                  group-hover:translate-x-0
-                "
-                aria-hidden="true"
-              />
-            )}
-          </>
-        )}
-      </NavLink> */}
+        Essays
+      </NavLink>
     </nav>
   );
 }

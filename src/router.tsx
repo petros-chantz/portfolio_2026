@@ -5,8 +5,8 @@ import { ApproachPage } from "./pages/approach/ApproachPage";
 import { VisionPage } from "./pages/vision/VisionPage";
 import { ProjectsPage } from "./pages/projects/ProjectsPage";
 import { ProjectDetailPage } from "./pages/projects/ProjectDetailPage";
-//import { EssaysIndex } from "./pages/essay/EssaysIndex";
-//import { EssayPage } from "./pages/essay/EssayPage";
+import { EssaysPage } from "./pages/essays/EssaysPage";
+import { EssayDetailPage } from "./pages/essays/EssayDetailPage";
 import { NotFound } from "./pages/NotFound";
 import { PresentationViewer } from "./pages/presentation/PresentationViewer";
 
@@ -20,8 +20,8 @@ export const router = createBrowserRouter([
       { path: "/vision", element: <VisionPage /> },
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:slug", element: <ProjectDetailPage /> },
-      // { path: "/essays", element: <EssaysIndex /> },
-      //  { path: "/essays/:slug", element: <EssayPage /> },
+      { path: "/essays", element: <EssaysPage /> },
+      { path: "/essays/:slug", element: <EssayDetailPage /> },
       { path: "*", element: <NotFound /> },
     ],
   },
