@@ -1,3 +1,8 @@
+import { blocks as operationalTrustBlocks } from "./content/designing-for-operational-trust";
+import { blocks as briefBlocks } from "./content/what-a-good-brief-actually-does";
+import { blocks as innovationBlocks } from "./content/against-surface-level-innovation";
+import { formatReadTime } from "./readTime";
+
 export const ESSAYS = {
   title: "Essays",
   description:
@@ -14,13 +19,19 @@ export type Essay = {
   coverBg: string;
 };
 
+const READ_TIME_BY_SLUG = {
+  "designing-for-operational-trust": formatReadTime(operationalTrustBlocks),
+  "what-a-good-brief-actually-does": formatReadTime(briefBlocks),
+  "against-surface-level-innovation": formatReadTime(innovationBlocks),
+} as const;
+
 export const ESSAY_LIST: readonly Essay[] = [
   {
     slug: "designing-for-operational-trust",
     title: "Designing for Operational Trust",
     category: "Systems",
     year: "2026",
-    readTime: "6 min read",
+    readTime: READ_TIME_BY_SLUG["designing-for-operational-trust"],
     summary:
       "Why enterprise products fail when they optimise for process compliance before they earn trust from the people doing the work.",
     coverBg: "#d7ddd5",
@@ -30,7 +41,7 @@ export const ESSAY_LIST: readonly Essay[] = [
     title: "What a Good Brief Actually Does",
     category: "Practice",
     year: "2025",
-    readTime: "5 min read",
+    readTime: READ_TIME_BY_SLUG["what-a-good-brief-actually-does"],
     summary:
       "A useful brief is not a requirements dump. It is a decision frame that aligns ambition, constraints, and the shape of evidence needed to move.",
     coverBg: "#e8dfd4",
@@ -40,7 +51,7 @@ export const ESSAY_LIST: readonly Essay[] = [
     title: "Against Surface-Level Innovation",
     category: "Opinion",
     year: "2025",
-    readTime: "7 min read",
+    readTime: READ_TIME_BY_SLUG["against-surface-level-innovation"],
     summary:
       "Why novelty without structural change creates impressive launches, weak products, and organisations that confuse motion for progress.",
     coverBg: "#d9d9ea",
