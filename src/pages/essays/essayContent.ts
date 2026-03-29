@@ -1,21 +1,16 @@
 import type { ContentBlock } from "./blocks";
+import { blocks as operationalTrustBlocks } from "./content/designing-for-operational-trust";
+import { blocks as briefBlocks } from "./content/what-a-good-brief-actually-does";
+import { blocks as innovationBlocks } from "./content/against-surface-level-innovation";
 
-type ContentModule = { blocks: ContentBlock[] };
-
-const registry: Record<string, () => Promise<ContentModule>> = {
-  "designing-for-operational-trust": () =>
-    import("./content/designing-for-operational-trust"),
-  "what-a-good-brief-actually-does": () =>
-    import("./content/what-a-good-brief-actually-does"),
-  "against-surface-level-innovation": () =>
-    import("./content/against-surface-level-innovation"),
+const registry: Record<string, ContentBlock[]> = {
+  "designing-for-operational-trust": operationalTrustBlocks,
+  "what-a-good-brief-actually-does": briefBlocks,
+  "against-surface-level-innovation": innovationBlocks,
 };
 
 export async function getEssayBlocks(
   slug: string,
 ): Promise<ContentBlock[] | null> {
-  const loader = registry[slug];
-  if (!loader) return null;
-  const mod = await loader();
-  return mod.blocks;
+  return registry[slug] ?? null;
 }

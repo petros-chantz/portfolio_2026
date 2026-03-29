@@ -27,3 +27,8 @@ dist-ssr
 public/private/
 public/private/slides/
 public/private/slides/*.png
+
+# Test artifacts
+playwright-report/
+test-results/
+coverage/
