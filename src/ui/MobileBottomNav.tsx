@@ -89,6 +89,15 @@ export function MobileBottomNav() {
           >
             Vision
           </NavLink>
+
+          <NavLink
+            to="/projects"
+            className={({ isActive }) =>
+              `${itemBase} ${isActive ? itemActive : itemIdle}`
+            }
+          >
+            Projects
+          </NavLink>
         </div>
       </div>
     </nav>

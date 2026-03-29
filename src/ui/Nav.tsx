@@ -1,8 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import {
-  ArrowTurnUpLeftIcon,
-  ArrowLongRightIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowTurnUpLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 
 const itemBase = "block rounded-md px-8 py-1.5 text-base transition";
@@ -81,7 +78,16 @@ export function Nav() {
         Vision
       </NavLink>
 
-      {/* Essays — arrow only when inactive */}
+      {/* Projects — text only */}
+      <NavLink
+        to="/projects"
+        className={({ isActive }) =>
+          `${itemBase} ${isActive ? itemActive : itemIdle}`
+        }
+      >
+        Projects
+      </NavLink>
+
       {/* <NavLink
         to="/essays"
         className={({ isActive }) =>
