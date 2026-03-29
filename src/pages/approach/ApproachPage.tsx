@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
 import { APPROACH, FAQS, PRINCIPLES } from "./approach.data";
@@ -30,6 +31,11 @@ export function ApproachPage() {
         canonical={canonical}
         ogImage={ogImage}
       />
+      <Helmet>
+        {PINNED_PHOTOS.map((p) => (
+          <link key={p.src} rel="preload" as="image" href={p.src} />
+        ))}
+      </Helmet>
 
       {/* Hero / intro with pinned photos */}
       <div className="relative overflow-visible">
