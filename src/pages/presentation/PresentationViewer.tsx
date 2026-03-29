@@ -105,9 +105,7 @@ function RestartButton({
             aria-hidden="true"
           />
           Restart{" "}
-          <span className="text-[10px] text-(--color-text-secondary)">
-            R
-          </span>
+          <span className="text-[10px] text-(--color-text-secondary)">R</span>
         </motion.button>
       )}
     </AnimatePresence>

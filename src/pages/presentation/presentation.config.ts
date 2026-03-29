@@ -5,10 +5,11 @@ export const HINT_MS = 1800;
 
 export function getAllowedKeys(): Set<string> {
   const raw = import.meta.env.VITE_PRESENTATION_KEYS as string | undefined;
-  const keys = raw
-    ?.split(",")
-    .map((s) => s.trim())
-    .filter(Boolean) ?? [];
+  const keys =
+    raw
+      ?.split(",")
+      .map((s) => s.trim())
+      .filter(Boolean) ?? [];
   return new Set(keys);
 }
 
