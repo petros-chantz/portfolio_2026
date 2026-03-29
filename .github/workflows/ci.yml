@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   check-full:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 20
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: Run full quality gate
         run: npm run check:full

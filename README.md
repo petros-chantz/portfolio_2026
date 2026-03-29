@@ -11,6 +11,8 @@ Portfolio site built with React, TypeScript, Vite, Tailwind, Framer Motion, and 
 - `npm run typecheck`: Run TypeScript project checks (`tsc -b`).
 - `npm run test:unit`: Run Vitest unit tests.
 - `npm run test:e2e`: Run Playwright browser smoke tests.
+- `npm run test:e2e:visual`: Run Playwright visual regression tests.
+- `npm run test:e2e:visual:update`: Update Playwright baseline snapshots.
 
 ## Quality Gates
 
@@ -33,8 +35,10 @@ If e2e fails in CI, Playwright report artifacts are uploaded.
 
 - Unit tests: `src/**/*.test.ts(x)`
 - E2E tests: `tests/e2e/**/*.spec.ts`
+- Visual snapshots: `tests/e2e/visual.spec.ts-snapshots/`
 
 ## Notes
 
 - Essay read times are auto-calculated from essay content blocks.
 - Playwright runs against a local Vite server at `http://127.0.0.1:4173`.
+- Visual snapshots are platform-rendered; CI runs on macOS to match baseline snapshots.

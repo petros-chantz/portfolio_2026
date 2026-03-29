@@ -17,11 +17,41 @@
 
   <url>
     <loc>https://petros.work/essays</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-29</lastmod>
   </url>
 
   <url>
-    <loc>https://petros.work/essays/why-i-build</loc>
-    <lastmod>2026-01-15</lastmod>
+    <loc>https://petros.work/projects</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/projects/internal-ops-platform</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/projects/b2b-ecommerce-redesign</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/projects/procurement-tool</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/essays/designing-for-operational-trust</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/essays/what-a-good-brief-actually-does</loc>
+    <lastmod>2026-03-29</lastmod>
+  </url>
+
+  <url>
+    <loc>https://petros.work/essays/against-surface-level-innovation</loc>
+    <lastmod>2026-03-29</lastmod>
   </url>
 </urlset>
