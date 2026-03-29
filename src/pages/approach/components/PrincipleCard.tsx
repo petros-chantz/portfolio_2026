@@ -17,11 +17,11 @@ export function PrincipleCard({ item, index }: PrincipleCardProps) {
       </span>
 
       <div className="grid gap-3">
-        <h3 className="text-xl font-medium text-[var(--color-text-primary)]">
+        <h3 className="text-xl font-medium text-(--color-text-primary)">
           {item.title}
         </h3>
 
-        <p className="text-base leading-relaxed text-[var(--color-text-primary)]">
+        <p className="text-base leading-relaxed text-(--color-text-primary)">
           {item.body}
         </p>
       </div>

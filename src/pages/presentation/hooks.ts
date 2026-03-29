@@ -55,20 +55,23 @@ export function useKeyboardControls(
       if (e.key === "r" || e.key === "R") handlers.restart();
     };
 
-    // Must be non-passive so preventDefault works
-    window.addEventListener("keydown", onKeyDown, { passive: false });
-    return () =>
-      window.removeEventListener("keydown", onKeyDown as EventListener);
+    const handler = onKeyDown as EventListener;
+    window.addEventListener("keydown", handler, { passive: false });
+    return () => window.removeEventListener("keydown", handler);
   }, [enabled, handlers]);
 }
 
 export function useHint(enabled: boolean, ms: number) {
-  const [show, setShow] = useState<boolean>(enabled);
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     if (!enabled) return;
-    const t = window.setTimeout(() => setShow(false), ms);
-    return () => window.clearTimeout(t);
+    const showTimer = window.setTimeout(() => setShow(true), 0);
+    const hideTimer = window.setTimeout(() => setShow(false), ms);
+    return () => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+    };
   }, [enabled, ms]);
 
   return show;

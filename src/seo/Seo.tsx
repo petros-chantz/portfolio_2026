@@ -26,6 +26,8 @@ export function Seo({ title, description, canonical, ogImage }: SeoProps) {
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      {description ? <meta name="twitter:description" content={description} /> : null}
       {ogImage ? <meta name="twitter:image" content={ogImage} /> : null}
     </Helmet>
   );

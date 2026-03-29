@@ -23,7 +23,7 @@ export function FaqItem({ item, index, isOpen, onToggle }: FaqItemProps) {
         onClick={() => onToggle(index)}
         className="group flex w-full items-start justify-between gap-6 text-left"
       >
-        <span className="text-lg font-medium text-[var(--color-text-primary)]">
+        <span className="text-lg font-medium text-(--color-text-primary)">
           {item.question}
         </span>
 
@@ -49,7 +49,7 @@ export function FaqItem({ item, index, isOpen, onToggle }: FaqItemProps) {
             style={{ overflow: "hidden" }}
           >
             <div className="pt-4 pr-10">
-              <p className="text-base leading-relaxed text-[var(--color-text-secondary)]">
+              <p className="text-base leading-relaxed text-(--color-text-secondary)">
                 {item.answer}
               </p>
             </div>

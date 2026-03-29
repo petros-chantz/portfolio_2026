@@ -1,12 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { Seo } from "../../seo/Seo";
+import { SITE_URL } from "../../lib/config";
 import { APPROACH, FAQS, PRINCIPLES } from "./approach.data";
 import { FaqItem } from "./components/FaqItem";
 import { PrincipleCard } from "./components/PrincipleCard";
 import { PinnedPhotoCluster } from "./components/PinnedPhotoCluster";
 import { PINNED_PHOTOS } from "./pinnedPhotos.data";
-
-const SITE_URL = "https://petros.work";
 
 export function ApproachPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -14,10 +13,7 @@ export function ApproachPage() {
   const canonical = `${SITE_URL}/approach`;
   const ogImage = `${SITE_URL}/og.png`;
 
-  const seoTitle = useMemo(() => {
-    const base = "Petros Chantzopoulos";
-    return `${APPROACH.title} — ${base}`;
-  }, []);
+  const seoTitle = `${APPROACH.title} — Petros Chantzopoulos`;
 
   const seoDescription =
     "Approach to strategic digital product design: principles, decision-making, and collaboration.";
@@ -39,10 +35,10 @@ export function ApproachPage() {
       <div className="relative overflow-visible">
         <PinnedPhotoCluster photos={PINNED_PHOTOS} />
 
-        <header className="relative z-10 space-y-4 pt-[250px] md:pt-[290px]">
+        <header className="relative z-10 space-y-4 pt-62.5 md:pt-72.5">
           <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
 
-          <div className="space-y-4 text-base leading-relaxed text-[var(--color-text-primary)]">
+          <div className="space-y-4 text-base leading-relaxed text-(--color-text-primary)">
             {APPROACH.intro.map((p) => (
               <p key={p}>{p}</p>
             ))}
@@ -60,7 +56,7 @@ export function ApproachPage() {
 
       <section className="space-y-6 pt-12" aria-label="FAQ">
         <header className="space-y-1">
-          <h2 className="text-3xl font-semibold text-[var(--color-text-primary)]">
+          <h2 className="text-3xl font-semibold text-(--color-text-primary)">
             FAQ
           </h2>
         </header>

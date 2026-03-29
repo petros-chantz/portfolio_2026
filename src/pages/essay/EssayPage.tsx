@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { getEssayBySlug } from "../../content.essays";
 import { Markdown } from "../../markdown/Markdown";
+import { Seo } from "../../seo/Seo";
+import { SITE_URL } from "../../lib/config";
 
 export function EssayPage() {
   const { slug } = useParams();
@@ -15,6 +17,11 @@ export function EssayPage() {
 
   return (
     <div className="space-y-6">
+      <Seo
+        title={`${essay.title} — Petros Chantzopoulos`}
+        description={essay.summary}
+        canonical={`${SITE_URL}/essays/${essay.slug}`}
+      />
       <header className="space-y-1">
         <h1 className="text-3xl font-semibold">{essay.title}</h1>
         {essay.date && <div className="text-sm opacity-70">{essay.date}</div>}

@@ -4,6 +4,7 @@ import { Nav } from "./Nav";
 import { PageNavbar } from "./PageNavbar";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileTopBar } from "./MobileTopBar";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 export function AppLayout() {
   const location = useLocation();
@@ -48,7 +49,9 @@ export function AppLayout() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              <Outlet />
+              <ErrorBoundary>
+                <Outlet />
+              </ErrorBoundary>
             </motion.div>
           </AnimatePresence>
         </div>

@@ -39,7 +39,7 @@ function KeyHint({ show }: { show: boolean }) {
             bg-white/80
             px-3 py-2
             text-sm
-            text-[var(--color-text-secondary)]
+            text-(--color-text-secondary)
             backdrop-blur-md
             shadow-[0_6px_20px_rgba(0,0,0,0.12)]
           "
@@ -51,7 +51,7 @@ function KeyHint({ show }: { show: boolean }) {
           <span className="inline-flex items-center gap-2">
             <span className="hidden md:inline">Use</span>
             <span className="md:hidden">Swipe</span>
-            <span className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-[var(--color-text-primary)]">
+            <span className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-(--color-text-primary)">
               <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </span>
@@ -84,9 +84,9 @@ function RestartButton({
             rounded-full border border-black/10 bg-white
             px-3 py-1.5
             text-xs
-            text-[var(--color-text-primary)]
+            text-(--color-text-primary)
             transition
-            hover:bg-black/[0.02]
+            hover:bg-black/2
             ${className}
           `}
           aria-label="Restart presentation"
@@ -105,7 +105,7 @@ function RestartButton({
             aria-hidden="true"
           />
           Restart{" "}
-          <span className="text-[10px] text-[var(--color-text-secondary)]">
+          <span className="text-[10px] text-(--color-text-secondary)">
             R
           </span>
         </motion.button>
@@ -176,10 +176,10 @@ export function PresentationViewer() {
   if (!isValid) return <NotFound />;
 
   return (
-    <div className="h-dvh w-full bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <div className="h-dvh w-full bg-(--color-bg) text-(--color-text-primary)">
       {/* Top navbar wrapper — match your normal pages exactly */}
       <div className="fixed left-0 right-0 top-0 z-20 w-full">
-        <div className="bg-[var(--color-bg)]">
+        <div className="bg-(--color-bg)">
           <div className="px-5">
             <PageNavbar />
           </div>
@@ -201,14 +201,14 @@ export function PresentationViewer() {
           text-center
           italic
           text-sm
-          text-[var(--color-text-secondary)]
+          text-(--color-text-secondary)
         "
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <span className="font-medium text-[var(--color-text-primary)]">
+                  <span className="font-medium text-(--color-text-primary)">
                     Note:
                   </span>{" "}
                   For optimal viewing experience, please move to a desktop or
@@ -221,7 +221,7 @@ export function PresentationViewer() {
           {/* Slide card area centered */}
           <div className="min-h-0 flex flex-1 items-center justify-center">
             <div
-              className="mx-auto w-full max-w-[1080px] desktop:max-w-[1440px] cursor-pointer select-none"
+              className="mx-auto w-full max-w-270 desktop:max-w-360 cursor-pointer select-none"
               onClick={onClickSlide}
               onTouchStart={onTouchStart}
               onTouchEnd={onTouchEnd}
@@ -235,7 +235,7 @@ export function PresentationViewer() {
                   max-h-[68dvh]
                   overflow-hidden
                   rounded-xl
-                  bg-[var(--color-bg)]
+                  bg-(--color-bg)
                   border border-black/5
                   shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_24px_rgba(0,0,0,0.08)]
                 "
@@ -254,7 +254,7 @@ export function PresentationViewer() {
 
           {/* Controls BELOW the slide */}
           <div className="mt-6">
-            <div className="relative mx-auto w-full max-w-[1440px]">
+            <div className="relative mx-auto w-full max-w-360">
               {/* Center arrow nav + counter (always centered) */}
               <div className="flex items-center justify-center gap-3">
                 {/* Mobile: show restart above arrows (only on last slide) */}
@@ -271,7 +271,7 @@ export function PresentationViewer() {
                     rounded-full border border-black/10 bg-white
                     p-2
                     transition
-                    hover:bg-black/[0.02]
+                    hover:bg-black/2
                     disabled:opacity-40
                   "
                   aria-label="Previous slide"
@@ -282,7 +282,7 @@ export function PresentationViewer() {
                   />
                 </button>
 
-                <div className="text-sm tabular-nums text-[var(--color-text-secondary)]">
+                <div className="text-sm tabular-nums text-(--color-text-secondary)">
                   {pad2(index + 1)} / {pad2(slides.length)}
                 </div>
 
@@ -295,7 +295,7 @@ export function PresentationViewer() {
                     rounded-full border border-black/10 bg-white
                     p-2
                     transition
-                    hover:bg-black/[0.02]
+                    hover:bg-black/2
                     disabled:opacity-40
                   "
                   aria-label="Next slide"

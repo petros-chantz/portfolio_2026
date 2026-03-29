@@ -17,7 +17,7 @@ export function HomePage() {
       <header className="space-y-2">
         <h1 className="text-3xl font-medium tracking-wide">{HOME.name}</h1>
 
-        <p className="font-sans text-lg italic tracking-wide text-[var(--color-text-primary)]">
+        <p className="font-sans text-lg italic tracking-wide text-(--color-text-primary)">
           {HOME.role}
         </p>
       </header>
@@ -34,7 +34,7 @@ export function HomePage() {
                 part.bold ? (
                   <strong
                     key={j}
-                    className="font-semibold text-[var(--color-text-primary)]"
+                    className="font-semibold text-(--color-text-primary)"
                   >
                     {part.text}
                   </strong>
@@ -45,8 +45,8 @@ export function HomePage() {
             </p>
           ))}
 
-          <p className="pt-6 text-sm text-[var(--color-text-secondary)]">
-            <span className="font-medium text-[var(--color-text-primary)]">
+          <p className="pt-6 text-sm text-(--color-text-secondary)">
+            <span className="font-medium text-(--color-text-primary)">
               Note:
             </span>{" "}
             {HOME.note}
@@ -57,7 +57,8 @@ export function HomePage() {
         <div className="flex items-center gap-4 pt-4 text-sm">
           <a
             href={`mailto:${email}`}
-            className="underline underline-offset-4 text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-primary)]"
+            aria-label={`Email ${HOME.name}`}
+            className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
           >
             Email me
           </a>
@@ -66,7 +67,8 @@ export function HomePage() {
             href={HOME.contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-4 text-[var(--color-text-secondary)] transition hover:text-[var(--color-text-primary)]"
+            aria-label={`${HOME.name} on LinkedIn`}
+            className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
           >
             LinkedIn
           </a>

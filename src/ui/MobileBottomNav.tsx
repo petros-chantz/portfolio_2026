@@ -6,9 +6,9 @@ const itemBase =
   "inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm transition";
 
 const itemIdle =
-  "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]";
+  "text-(--color-text-secondary) hover:text-(--color-text-primary)";
 
-const itemActive = "text-[var(--color-text-primary)] font-medium";
+const itemActive = "text-(--color-text-primary) font-medium";
 
 export function MobileBottomNav() {
   const { pathname } = useLocation();
@@ -19,7 +19,7 @@ export function MobileBottomNav() {
       aria-label="Primary"
       className="
         fixed inset-x-0 bottom-0 z-40 md:hidden
-        bg-[var(--color-bg)]/80 backdrop-blur-md
+        bg-(--color-bg)/80 backdrop-blur-md
         border-t border-black/10
         shadow-[0_-8px_24px_rgba(0,0,0,0.08)]
       "
@@ -56,7 +56,7 @@ export function MobileBottomNav() {
                     <ArrowTurnUpLeftIcon
                       className="
                         h-4 w-4
-                        text-[var(--color-text-secondary)]
+                        text-(--color-text-secondary)
                         transition-transform duration-200 ease-out
                         group-hover:-translate-x-1
                       "
@@ -88,15 +88,6 @@ export function MobileBottomNav() {
             }
           >
             Vision
-          </NavLink>
-
-          <NavLink
-            to="/essays"
-            className={({ isActive }) =>
-              `${itemBase} ${isActive ? itemActive : itemIdle}`
-            }
-          >
-            Essays
           </NavLink>
         </div>
       </div>

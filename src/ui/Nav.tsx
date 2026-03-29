@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const itemBase = "block rounded-md px-8 py-1.5 text-base transition";
 const itemIdle =
-  "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]";
-const itemActive = "font-medium text-[var(--color-text-primary)]";
+  "text-(--color-text-secondary) hover:text-(--color-text-primary)";
+const itemActive = "font-medium text-(--color-text-primary)";
 
 export function Nav() {
   const { pathname } = useLocation();
@@ -47,7 +47,7 @@ export function Nav() {
                   <ArrowTurnUpLeftIcon
                     className="
                       h-4 w-4
-                      text-[var(--color-text-secondary)]
+                      text-(--color-text-secondary)
                       transition-transform duration-200 ease-out
                       group-hover:-translate-x-1
                     "

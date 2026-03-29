@@ -8,7 +8,7 @@ export function getAllowedKeys(): Set<string> {
   const keys = raw
     ?.split(",")
     .map((s) => s.trim())
-    .filter(Boolean) ?? ["sample-token"];
+    .filter(Boolean) ?? [];
   return new Set(keys);
 }
 
