@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import { controlPillBaseClass, pageTitleClass } from "../../ui/typography";
 import { ESSAYS, ESSAY_LIST } from "./Essays.data";
 import { EssayCard } from "./components/EssayCard";
 
@@ -42,7 +43,7 @@ export function EssaysPage() {
       />
 
       <header>
-        <h1 className="text-3xl font-semibold">{ESSAYS.title}</h1>
+        <h1 className={pageTitleClass}>{ESSAYS.title}</h1>
       </header>
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -54,7 +55,7 @@ export function EssaysPage() {
                 key={filter}
                 type="button"
                 onClick={() => setActiveFilter(filter)}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                className={`${controlPillBaseClass} ${
                   isActive
                     ? "bg-black/6 text-(--color-text-primary)"
                     : "text-(--color-text-secondary) hover:text-(--color-text-primary)"

@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import {
+  cardSummaryClass,
+  cardTitleClass,
+  metaTextClass,
+} from "../../../ui/typography";
 import type { Project } from "../Projects.data";
 
 type Props = {
@@ -18,13 +23,11 @@ export function ProjectCard({ project, view }: Props) {
           style={{ backgroundColor: project.coverBg }}
         />
         <div className="space-y-1 py-0.5">
-          <div className="text-xs text-(--color-text-secondary)">
+          <div className={metaTextClass}>
             {project.category}&ensp;·&ensp;{project.year}
           </div>
-          <h3 className="text-base font-medium leading-snug text-(--color-text-primary)">
-            {project.title}
-          </h3>
-          <p className="line-clamp-2 text-sm leading-relaxed text-(--color-text-secondary)">
+          <h3 className={cardTitleClass}>{project.title}</h3>
+          <p className={`line-clamp-2 ${cardSummaryClass}`}>
             {project.summary}
           </p>
         </div>
@@ -39,15 +42,11 @@ export function ProjectCard({ project, view }: Props) {
         style={{ backgroundColor: project.coverBg }}
       />
       <div className="space-y-1">
-        <div className="text-xs text-(--color-text-secondary)">
+        <div className={metaTextClass}>
           {project.category}&ensp;·&ensp;{project.year}
         </div>
-        <h3 className="text-base font-medium leading-snug text-(--color-text-primary)">
-          {project.title}
-        </h3>
-        <p className="line-clamp-2 text-sm leading-relaxed text-(--color-text-secondary)">
-          {project.summary}
-        </p>
+        <h3 className={cardTitleClass}>{project.title}</h3>
+        <p className={`line-clamp-2 ${cardSummaryClass}`}>{project.summary}</p>
       </div>
     </Link>
   );

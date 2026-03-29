@@ -3,6 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import {
+  introTextClass,
+  metaTextClass,
+  pageTitleClass,
+} from "../../ui/typography";
 import { ESSAY_LIST } from "./Essays.data";
 import { getEssayBlocks } from "./essayContent";
 import { EssayBlocks } from "./components/EssayBlocks";
@@ -46,7 +51,7 @@ export function EssayDetailPage() {
   const seoTitle = `${essay.title} — Petros Chantzopoulos`;
 
   return (
-    <div className="space-y-10 pb-16">
+    <div className="space-y-8 md:space-y-10 pb-16">
       <Seo title={seoTitle} description={essay.summary} canonical={canonical} />
 
       <Link
@@ -57,20 +62,16 @@ export function EssayDetailPage() {
         Essays
       </Link>
 
-      <header className="space-y-3">
-        <div className="text-sm text-(--color-text-secondary)">
+      <header className="space-y-2.5 md:space-y-3">
+        <div className={metaTextClass}>
           {essay.category}&ensp;·&ensp;{essay.year}&ensp;·&ensp;{essay.readTime}
         </div>
-        <h1 className="text-3xl font-semibold leading-tight text-(--color-text-primary)">
-          {essay.title}
-        </h1>
-        <p className="max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
-          {essay.summary}
-        </p>
+        <h1 className={pageTitleClass}>{essay.title}</h1>
+        <p className={introTextClass}>{essay.summary}</p>
       </header>
 
       <div
-        className="aspect-video w-full rounded-2xl"
+        className="aspect-video w-full rounded-xl md:rounded-2xl"
         style={{ backgroundColor: essay.coverBg }}
       />
 

@@ -1,5 +1,10 @@
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import {
+  bodyTextClass,
+  introTextClass,
+  pageTitleClass,
+} from "../../ui/typography";
 import { VISION } from "./Vision.data";
 
 export function VisionPage() {
@@ -18,16 +23,16 @@ export function VisionPage() {
       />
 
       <header className="space-y-4">
-        <h1 className="text-3xl font-semibold">{VISION.title}</h1>
+        <h1 className={pageTitleClass}>{VISION.title}</h1>
 
-        <p className="max-w-2xl text-lg leading-relaxed text-(--color-text-primary)">
-          {VISION.intro}
-        </p>
+        <p className={introTextClass}>{VISION.intro}</p>
       </header>
 
-      <section className="space-y-5 text-lg leading-relaxed text-(--color-text-primary)">
+      <section className="space-y-5">
         {VISION.body.map((p) => (
-          <p key={p}>{p}</p>
+          <p key={p} className={bodyTextClass}>
+            {p}
+          </p>
         ))}
       </section>
     </div>

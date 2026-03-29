@@ -1,9 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { ArrowTurnUpLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
+import { navMobileItemClass } from "./typography";
 
-const itemBase =
-  "inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm transition";
+const itemBase = navMobileItemClass;
 
 const itemIdle =
   "text-(--color-text-secondary) hover:text-(--color-text-primary)";
@@ -24,7 +24,7 @@ export function MobileBottomNav() {
         shadow-[0_-8px_24px_rgba(0,0,0,0.08)]
       "
     >
-      <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-4 py-2">
+      <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-4 py-1.5">
         {/* Home slot: reserved space + fade in/out like desktop Nav */}
         <div className="relative">
           {/* Placeholder keeps spacing stable */}

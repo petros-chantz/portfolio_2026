@@ -37,9 +37,11 @@ export function AppLayout() {
       {/* Content area */}
       <main className="md:pl-55">
         <div
-          className={`mx-auto w-full max-w-3xl px-4 ${
-            isHome ? "py-10" : "pt-20 pb-10"
-          } pb-24 md:pb-10`}
+          className={`mx-auto w-full px-4 ${
+            isHome
+              ? "max-w-3xl pt-14 pb-24 md:pt-20 md:pb-10"
+              : "max-w-3xl pt-20 pb-24 md:pb-10"
+          }`}
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div

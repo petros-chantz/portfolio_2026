@@ -1,6 +1,7 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Faq } from "../approach.data";
+import { bodyMutedClass, subsectionTitleClass } from "../../../ui/typography";
 
 type FaqItemProps = {
   item: Faq;
@@ -23,9 +24,7 @@ export function FaqItem({ item, index, isOpen, onToggle }: FaqItemProps) {
         onClick={() => onToggle(index)}
         className="group flex w-full items-start justify-between gap-6 text-left"
       >
-        <span className="text-lg font-medium text-(--color-text-primary)">
-          {item.question}
-        </span>
+        <span className={subsectionTitleClass}>{item.question}</span>
 
         <PlusIcon
           className={`h-5 w-5 shrink-0 transition-transform duration-200 ${
@@ -49,9 +48,7 @@ export function FaqItem({ item, index, isOpen, onToggle }: FaqItemProps) {
             style={{ overflow: "hidden" }}
           >
             <div className="pt-4 pr-10">
-              <p className="text-base leading-relaxed text-(--color-text-secondary)">
-                {item.answer}
-              </p>
+              <p className={bodyMutedClass}>{item.answer}</p>
             </div>
           </motion.div>
         )}

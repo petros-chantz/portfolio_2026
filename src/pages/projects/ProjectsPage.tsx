@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import { controlPillBaseClass, pageTitleClass } from "../../ui/typography";
 import { PROJECTS, PROJECT_LIST } from "./Projects.data";
 import { ProjectCard } from "./components/ProjectCard";
 
@@ -30,7 +31,7 @@ export function ProjectsPage() {
         ogImage={ogImage}
       />
 
-      <h1 className="text-3xl font-semibold">{PROJECTS.title}</h1>
+      <h1 className={pageTitleClass}>{PROJECTS.title}</h1>
 
       {/* Controls: tabs + view toggle */}
       <div className="flex items-center justify-between">
@@ -38,7 +39,7 @@ export function ProjectsPage() {
         <div className="flex items-center gap-1">
           <button
             type="button"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-(--color-text-primary) bg-black/6"
+            className={`${controlPillBaseClass} bg-black/6 text-(--color-text-primary)`}
           >
             All
           </button>

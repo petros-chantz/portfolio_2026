@@ -1,11 +1,16 @@
 import { Seo } from "../../seo/Seo";
 import { HOME } from "./Home.data";
+import {
+  bodyMutedClass,
+  bodyTextClass,
+  pageTitleClass,
+} from "../../ui/typography";
 
 const email = `${HOME.contact.emailUser}@${HOME.contact.emailDomain}`;
 
 export function HomePage() {
   return (
-    <main className="space-y-10 pt-10">
+    <main className="space-y-6 md:space-y-10">
       <Seo
         title={HOME.name} // short tab title, as you prefer
         description={HOME.description}
@@ -13,52 +18,42 @@ export function HomePage() {
         ogImage={HOME.ogImage}
       />
 
-      {/* Identity / hero */}
-      <header className="space-y-2">
-        <h1 className="text-3xl font-medium tracking-wide">{HOME.name}</h1>
+      <header className="max-w-2xl space-y-2.5 md:space-y-3">
+        <h1 className={pageTitleClass}>{HOME.name}</h1>
 
-        <p className="font-sans text-lg italic tracking-wide text-(--color-text-primary)">
+        <p className="text-[0.98rem] md:text-[1.05rem] italic leading-[1.33] md:leading-[1.35] tracking-[-0.015em] text-(--color-text-secondary)">
           {HOME.role}
         </p>
       </header>
 
-      {/* About */}
-      <section
-        className="space-y-6 text-base leading-relaxed tracking-wide"
-        aria-label="About"
-      >
-        <div className="space-y-4">
-          {HOME.about.map((paragraph, i) => (
-            <p key={i}>
-              {paragraph.map((part, j) =>
-                part.bold ? (
-                  <strong
-                    key={j}
-                    className="font-semibold text-(--color-text-primary)"
-                  >
-                    {part.text}
-                  </strong>
-                ) : (
-                  <span key={j}>{part.text}</span>
-                ),
-              )}
-            </p>
-          ))}
-
-          <p className="pt-6 text-sm text-(--color-text-secondary)">
-            <span className="font-medium text-(--color-text-primary)">
-              Note:
-            </span>{" "}
-            {HOME.note}
+      <section className="max-w-3xl space-y-4 md:space-y-5" aria-label="About">
+        {HOME.about.map((paragraph, i) => (
+          <p key={i} className={bodyTextClass}>
+            {paragraph.map((part, j) =>
+              "bold" in part && part.bold ? (
+                <strong
+                  key={j}
+                  className="font-semibold text-(--color-text-primary)"
+                >
+                  {part.text}
+                </strong>
+              ) : (
+                <span key={j}>{part.text}</span>
+              ),
+            )}
           </p>
-        </div>
+        ))}
 
-        {/* Contact */}
-        <div className="flex items-center gap-4 pt-4 text-sm">
+        <p className={`pt-1 text-sm ${bodyMutedClass}`}>
+          <span className="font-medium text-(--color-text-primary)">Note:</span>{" "}
+          {HOME.note}
+        </p>
+
+        <div className="flex items-center gap-4 pt-1 text-[0.84rem] md:text-sm">
           <a
             href={`mailto:${email}`}
             aria-label={`Email ${HOME.name}`}
-            className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
+            className="underline underline-offset-4 decoration-black/20 text-(--color-text-secondary) transition hover:text-(--color-text-primary) hover:decoration-black/50"
           >
             Email me
           </a>
@@ -68,7 +63,7 @@ export function HomePage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${HOME.name} on LinkedIn`}
-            className="underline underline-offset-4 text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
+            className="underline underline-offset-4 decoration-black/20 text-(--color-text-secondary) transition hover:text-(--color-text-primary) hover:decoration-black/50"
           >
             LinkedIn
           </a>

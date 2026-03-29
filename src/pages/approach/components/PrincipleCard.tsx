@@ -1,4 +1,5 @@
 import type { Principle } from "../approach.data";
+import { bodyTextClass, subsectionTitleClass } from "../../../ui/typography";
 
 function formatIndex(i: number) {
   return String(i + 1).padStart(2, "0");
@@ -17,13 +18,9 @@ export function PrincipleCard({ item, index }: PrincipleCardProps) {
       </span>
 
       <div className="grid gap-3">
-        <h3 className="text-xl font-medium text-(--color-text-primary)">
-          {item.title}
-        </h3>
+        <h3 className={subsectionTitleClass}>{item.title}</h3>
 
-        <p className="text-base leading-relaxed text-(--color-text-primary)">
-          {item.body}
-        </p>
+        <p className={bodyTextClass}>{item.body}</p>
       </div>
     </div>
   );

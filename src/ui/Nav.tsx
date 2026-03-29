@@ -1,8 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { ArrowTurnUpLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
+import { navDesktopItemClass } from "./typography";
 
-const itemBase = "block rounded-md px-8 py-1.5 text-base transition";
+const itemBase = navDesktopItemClass;
 const itemIdle =
   "text-(--color-text-secondary) hover:text-(--color-text-primary)";
 const itemActive = "font-medium text-(--color-text-primary)";

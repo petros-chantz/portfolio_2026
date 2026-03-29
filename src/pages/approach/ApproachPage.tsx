@@ -2,6 +2,11 @@ import { useCallback, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import {
+  bodyTextClass,
+  pageTitleClass,
+  sectionTitleClass,
+} from "../../ui/typography";
 import { APPROACH, FAQS, PRINCIPLES } from "./approach.data";
 import { FaqItem } from "./components/FaqItem";
 import { PrincipleCard } from "./components/PrincipleCard";
@@ -42,11 +47,13 @@ export function ApproachPage() {
         <PinnedPhotoCluster photos={PINNED_PHOTOS} />
 
         <header className="relative z-10 space-y-4 pt-62.5 md:pt-72.5">
-          <h1 className="text-3xl font-semibold">{APPROACH.title}</h1>
+          <h1 className={pageTitleClass}>{APPROACH.title}</h1>
 
-          <div className="space-y-4 text-base leading-relaxed text-(--color-text-primary)">
+          <div className="space-y-4">
             {APPROACH.intro.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p} className={bodyTextClass}>
+                {p}
+              </p>
             ))}
           </div>
         </header>
@@ -62,9 +69,7 @@ export function ApproachPage() {
 
       <section className="space-y-6 pt-12" aria-label="FAQ">
         <header className="space-y-1">
-          <h2 className="text-3xl font-semibold text-(--color-text-primary)">
-            FAQ
-          </h2>
+          <h2 className={sectionTitleClass}>FAQ</h2>
         </header>
 
         <div>

@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
+import {
+  bodyTextClass,
+  captionTextClass,
+  quoteTextClass,
+  sectionTitleClass,
+  subsectionTitleClass,
+} from "../../../ui/typography";
 import type {
   ContentBlock,
   TextBlock,
@@ -20,9 +27,7 @@ function Prose({ children }: { children: string }) {
       rehypePlugins={[rehypeSanitize]}
       components={{
         p: ({ children: c }) => (
-          <p className="mt-4 text-base leading-relaxed text-(--color-text-primary) first:mt-0">
-            {c}
-          </p>
+          <p className={`mt-4 first:mt-0 ${bodyTextClass}`}>{c}</p>
         ),
         strong: ({ children: c }) => (
           <strong className="font-semibold text-(--color-text-primary)">
@@ -77,11 +82,7 @@ function BlockImg({
 function RenderText({ block }: { block: TextBlock }) {
   return (
     <div className="space-y-2">
-      {block.heading && (
-        <h2 className="text-xl font-semibold text-(--color-text-primary)">
-          {block.heading}
-        </h2>
-      )}
+      {block.heading && <h2 className={sectionTitleClass}>{block.heading}</h2>}
       <Prose>{block.body}</Prose>
     </div>
   );
@@ -92,17 +93,13 @@ function RenderText2Col({ block }: { block: Text2ColBlock }) {
     <div className="grid gap-8 md:grid-cols-2">
       <div className="space-y-2">
         {block.leftHeading && (
-          <h3 className="text-base font-semibold text-(--color-text-primary)">
-            {block.leftHeading}
-          </h3>
+          <h3 className={subsectionTitleClass}>{block.leftHeading}</h3>
         )}
         <Prose>{block.left}</Prose>
       </div>
       <div className="space-y-2">
         {block.rightHeading && (
-          <h3 className="text-base font-semibold text-(--color-text-primary)">
-            {block.rightHeading}
-          </h3>
+          <h3 className={subsectionTitleClass}>{block.rightHeading}</h3>
         )}
         <Prose>{block.right}</Prose>
       </div>
@@ -120,9 +117,7 @@ function RenderImage({ block }: { block: ImageBlock }) {
         className="aspect-video w-full"
       />
       {block.caption && (
-        <figcaption className="text-center text-sm text-(--color-text-secondary)">
-          {block.caption}
-        </figcaption>
+        <figcaption className={captionTextClass}>{block.caption}</figcaption>
       )}
     </figure>
   );
@@ -143,9 +138,7 @@ function RenderImage2({ block }: { block: Image2Block }) {
         ))}
       </div>
       {block.caption && (
-        <figcaption className="text-center text-sm text-(--color-text-secondary)">
-          {block.caption}
-        </figcaption>
+        <figcaption className={captionTextClass}>{block.caption}</figcaption>
       )}
     </figure>
   );
@@ -219,9 +212,7 @@ function RenderCollage({ block }: { block: CollageBlock }) {
         })}
       </div>
       {block.caption && (
-        <figcaption className="text-center text-sm text-(--color-text-secondary)">
-          {block.caption}
-        </figcaption>
+        <figcaption className={captionTextClass}>{block.caption}</figcaption>
       )}
     </figure>
   );
@@ -230,9 +221,7 @@ function RenderCollage({ block }: { block: CollageBlock }) {
 function RenderQuote({ block }: { block: QuoteBlock }) {
   return (
     <blockquote className="border-l-2 border-black/20 pl-5 space-y-1">
-      <p className="text-xl font-medium leading-relaxed text-(--color-text-primary)">
-        "{block.text}"
-      </p>
+      <p className={quoteTextClass}>"{block.text}"</p>
       {block.attribution && (
         <p className="text-sm text-(--color-text-secondary)">
           {block.attribution}

@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import {
+  cardSummaryClass,
+  cardTitleClass,
+  metaTextClass,
+} from "../../../ui/typography";
 import type { Essay } from "../Essays.data";
 
 type Props = {
@@ -18,16 +23,12 @@ export function EssayCard({ essay, view }: Props) {
           style={{ backgroundColor: essay.coverBg }}
         />
         <div className="space-y-1 py-0.5">
-          <div className="text-xs text-(--color-text-secondary)">
+          <div className={metaTextClass}>
             {essay.category}&ensp;·&ensp;{essay.year}&ensp;·&ensp;
             {essay.readTime}
           </div>
-          <h3 className="text-base font-medium leading-snug text-(--color-text-primary)">
-            {essay.title}
-          </h3>
-          <p className="line-clamp-2 text-sm leading-relaxed text-(--color-text-secondary)">
-            {essay.summary}
-          </p>
+          <h3 className={cardTitleClass}>{essay.title}</h3>
+          <p className={`line-clamp-2 ${cardSummaryClass}`}>{essay.summary}</p>
         </div>
       </Link>
     );
@@ -40,15 +41,11 @@ export function EssayCard({ essay, view }: Props) {
         style={{ backgroundColor: essay.coverBg }}
       />
       <div className="space-y-1">
-        <div className="text-xs text-(--color-text-secondary)">
+        <div className={metaTextClass}>
           {essay.category}&ensp;·&ensp;{essay.year}&ensp;·&ensp;{essay.readTime}
         </div>
-        <h3 className="text-base font-medium leading-snug text-(--color-text-primary)">
-          {essay.title}
-        </h3>
-        <p className="line-clamp-2 text-sm leading-relaxed text-(--color-text-secondary)">
-          {essay.summary}
-        </p>
+        <h3 className={cardTitleClass}>{essay.title}</h3>
+        <p className={`line-clamp-2 ${cardSummaryClass}`}>{essay.summary}</p>
       </div>
     </Link>
   );

@@ -3,6 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL } from "../../lib/config";
+import {
+  introTextClass,
+  metaTextClass,
+  pageTitleClass,
+} from "../../ui/typography";
 import { PROJECT_LIST } from "./Projects.data";
 import { getProjectBlocks } from "./projectContent";
 import { ProjectBlocks } from "./components/ProjectBlocks";
@@ -46,7 +51,7 @@ export function ProjectDetailPage() {
   const seoTitle = `${project.title} — Petros Chantzopoulos`;
 
   return (
-    <div className="space-y-10 pb-16">
+    <div className="space-y-8 md:space-y-10 pb-16">
       <Seo
         title={seoTitle}
         description={project.summary}
@@ -63,21 +68,17 @@ export function ProjectDetailPage() {
       </Link>
 
       {/* Hero */}
-      <header className="space-y-3">
-        <div className="text-sm text-(--color-text-secondary)">
+      <header className="space-y-2.5 md:space-y-3">
+        <div className={metaTextClass}>
           {project.category}&ensp;·&ensp;{project.year}
         </div>
-        <h1 className="text-3xl font-semibold leading-tight text-(--color-text-primary)">
-          {project.title}
-        </h1>
-        <p className="max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
-          {project.summary}
-        </p>
+        <h1 className={pageTitleClass}>{project.title}</h1>
+        <p className={introTextClass}>{project.summary}</p>
       </header>
 
       {/* Hero cover */}
       <div
-        className="w-full aspect-video rounded-2xl"
+        className="w-full aspect-video rounded-xl md:rounded-2xl"
         style={{ backgroundColor: project.coverBg }}
       />
 
