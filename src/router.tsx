@@ -11,7 +11,7 @@ import { NotFound } from "./pages/NotFound";
 import { PresentationViewer } from "./pages/presentation/PresentationViewer";
 
 export const router = createBrowserRouter([
-  { path: "/presentation", element: <PresentationViewer /> },
+  { path: "/portfolio", element: <PresentationViewer /> },
   {
     element: <AppLayout />,
     children: [
