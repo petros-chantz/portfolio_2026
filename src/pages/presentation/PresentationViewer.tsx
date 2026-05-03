@@ -3,8 +3,6 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
   ArrowUturnLeftIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -26,41 +24,6 @@ import {
   useNoIndex,
   usePreloadNeighbors,
 } from "./hooks";
-
-function KeyHint({ show }: { show: boolean }) {
-  return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          className="
-            pointer-events-none
-            absolute left-1/2 top-6 -translate-x-1/2
-            rounded-full
-            bg-white/80
-            px-3 py-2
-            text-sm
-            text-(--color-text-secondary)
-            backdrop-blur-md
-            shadow-[0_6px_20px_rgba(0,0,0,0.12)]
-          "
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-        >
-          <span className="inline-flex items-center gap-2">
-            <span className="hidden md:inline">Use</span>
-            <span className="md:hidden">Swipe</span>
-            <span className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-(--color-text-primary)">
-              <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
-              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </span>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 function RestartButton({
   show,
@@ -135,11 +98,10 @@ export function PresentationViewer() {
   const restart = () => setIndex(0);
 
   useNoIndex(isValid);
-  const showHint = useHint(isValid, HINT_MS);
   usePreloadNeighbors(isValid, slides, index);
   useKeyboardControls(isValid, { prev, next, restart });
 
-  // Mobile note: show longer than the swipe/use hint
+  // Mobile note: show for a few seconds
   const showMobileNote = useHint(isValid, HINT_MS + 5000);
 
   // Click navigation: left half = prev, right half = next
@@ -244,8 +206,6 @@ export function PresentationViewer() {
                   className="h-full w-full object-contain"
                   draggable={false}
                 />
-
-                <KeyHint show={showHint} />
               </div>
             </div>
           </div>

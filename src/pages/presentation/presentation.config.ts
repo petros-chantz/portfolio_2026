@@ -1,6 +1,6 @@
 // src/presentation/presentation.config.ts
 
-export const SLIDE_COUNT = 17;
+export const SLIDE_COUNT = 12;
 export const HINT_MS = 1800;
 
 export function getAllowedKeys(): Set<string> {
