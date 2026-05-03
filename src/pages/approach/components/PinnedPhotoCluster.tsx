@@ -7,7 +7,7 @@ type Props = {
 };
 
 const basePhoto =
-  "absolute rounded-[6px] object-cover shadow-[0_2px_3px_rgba(0,0,0,0.08),0_14px_34px_rgba(0,0,0,0.14)]";
+  "absolute overflow-hidden rounded-[6px] object-cover ring-1 ring-black/10 shadow-[0_3px_6px_rgba(0,0,0,0.1),0_18px_42px_rgba(0,0,0,0.18)]";
 
 function PinnedPhotoItem({ p }: { p: PinnedPhoto }) {
   const [ready, setReady] = useState(false);
@@ -30,6 +30,7 @@ function PinnedPhotoItem({ p }: { p: PinnedPhoto }) {
           "h-full w-full rounded-md object-cover transition-opacity duration-500 ease-out",
           ready ? "opacity-100" : "opacity-0",
         ].join(" ")}
+        style={{ filter: "contrast(1.08) saturate(1.06)" }}
         onLoad={() => setReady(true)}
       />
     </div>

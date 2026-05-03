@@ -30,56 +30,34 @@ test("visual: home desktop", async ({ page }) => {
   });
 });
 
-test("visual: projects index desktop", async ({ page }) => {
+test("visual: approach desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/projects");
+  await page.goto("/approach");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("projects-index-desktop.png", {
+  await expect(page).toHaveScreenshot("approach-desktop.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });
 });
 
-test("visual: project detail desktop", async ({ page }) => {
+test("visual: vision desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/projects/internal-ops-platform");
+  await page.goto("/vision");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("project-detail-desktop.png", {
+  await expect(page).toHaveScreenshot("vision-desktop.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });
 });
 
-test("visual: essays index desktop", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/essays");
-  await stabilizePage(page);
-
-  await expect(page).toHaveScreenshot("essays-index-desktop.png", {
-    fullPage: false,
-    maxDiffPixelRatio: 0.01,
-  });
-});
-
-test("visual: essay detail desktop", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/essays/designing-for-operational-trust");
-  await stabilizePage(page);
-
-  await expect(page).toHaveScreenshot("essay-detail-desktop.png", {
-    fullPage: false,
-    maxDiffPixelRatio: 0.01,
-  });
-});
-
-test("visual: essays index mobile", async ({ page }) => {
+test("visual: approach mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/essays");
+  await page.goto("/approach");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("essays-index-mobile.png", {
+  await expect(page).toHaveScreenshot("approach-mobile.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });

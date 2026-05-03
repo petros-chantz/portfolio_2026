@@ -16,7 +16,7 @@ export const HOME = {
   about: [
     [
       {
-        text: "I design intentional, strategic digital products for organisations navigating change.",
+        text: "I design intentional, strategic digital products for organisations navigating change. My aim is to bring forward meaning and intention into digital experiences by connecting design, technology and data.",
       },
     ],
 
@@ -24,19 +24,19 @@ export const HOME = {
       { text: "With " },
       { text: "5+ years", bold: true },
       {
-        text: " in B2B product design, I’ve shipped internal tools, large platforms, and B2B e-commerce experiences. I’ve also designed new products shaped by legacy ERP constraints, adoption challenges, shadow IT, and low trust in systems.",
+        text: " in B2B product design, I’ve shipped internal tools, large platforms and B2B e-commerce experiences. I have an affinity for designing complex products shaped by legacy ERP constraints, adoption challenges, shadow IT and low trust in systems.",
       },
     ],
 
     [
       {
-        text: "I treat research as an integral part of the design process. I frame decisions, test assumptions, and challenge stakeholder preconceptions while still shipping through iterative releases.",
+        text: "I treat research as an integral part of the design process. I frame decisions, test assumptions and challenge stakeholder preconceptions while still shipping through iterative releases.",
       },
     ],
 
     [
       {
-        text: "I see design not only as problem-solving or interface-making, but as inquiry into what could be and what should be. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people.",
+        text: "I see design not only as problem-solving or interface-making, but as inquiry into what could be and what should be. I see data experiences and AI-driven behaviours as things that should add value and be designed with intention so they make sense to people. I believe great product experiences should be designed as a holistic system, not as isolated entities.",
       },
     ],
 
@@ -44,7 +44,7 @@ export const HOME = {
       { text: "Currently, I’m a " },
       { text: "Sr Product Designer @ APS Group", bold: true },
       {
-        text: ", leading strategic initiatives in data-heavy marketing operations tech. I also contribute to design ops, research and prototyping, mentor designers, and run an internship programme.",
+        text: ", leading strategic initiatives in data-complex marketing operations tech. I also contribute to design ops, research and prototyping, while mentoring designers and runnning an internship programme.",
       },
     ],
   ] as const satisfies readonly AboutParagraph[],

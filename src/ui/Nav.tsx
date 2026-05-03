@@ -78,25 +78,6 @@ export function Nav() {
       >
         Vision
       </NavLink>
-
-      {/* Projects — text only */}
-      <NavLink
-        to="/projects"
-        className={({ isActive }) =>
-          `${itemBase} ${isActive ? itemActive : itemIdle}`
-        }
-      >
-        Projects
-      </NavLink>
-
-      <NavLink
-        to="/essays"
-        className={({ isActive }) =>
-          `${itemBase} ${isActive ? itemActive : itemIdle}`
-        }
-      >
-        Essays
-      </NavLink>
     </nav>
   );
 }
