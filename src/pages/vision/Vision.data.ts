@@ -7,7 +7,7 @@ export const VISION = {
   intro:
     "What is a product? a question that has become harder to answer with confidence.",
   body: [
-    "Many things that once felt separate, like products, services, or systems, now blend into one interdependent experience. A train journey, an app, or a coffee are no longer shaped by one interface alone. They are made up of many touchpoints across digital products, physical artifacts, operational decisions, data flows and sometimes even competing companies. What people experience is not one isolated product, but a constellation of experiences composing for our attention that are often hard to grasp, harder to differentiate and harder to design for.",
+    "Many things that once felt separate, like products, services, or systems, now blend into one interdependent experience. A train journey, an app, or a coffee are no longer shaped by one interface alone. They are made up of many touchpoints across digital products, physical artifacts, operational decisions, data flows and sometimes even competing companies. What people experience is not one isolated product, but a constellation of experiences competing for our attention that are often hard to grasp, harder to differentiate and harder to design for.",
 
     "This did not happen by accident. For years, digital technologies were framed as more flexible and adaptive than physical products. Because they were not bound by material constraints in the same way, they could evolve faster, reach more people and had the plasticity to morph and change in any direction in perpetuity. That promise gave businesses a sense of possibility: experiences could always be improved, expanded and brought closer to users in their reactive cycle. They are always on, but never fully settled.",
 

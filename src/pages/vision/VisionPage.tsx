@@ -6,7 +6,6 @@ import {
   pageTitleClass,
 } from "../../ui/typography";
 import { VISION } from "./Vision.data";
-import { VisionCollage } from "./components/VisionCollage";
 
 export function VisionPage() {
   const canonical = `${SITE_URL}/vision`;
@@ -23,15 +22,19 @@ export function VisionPage() {
         ogImage={ogImage}
       />
 
-      <div className="relative overflow-visible">
-        <VisionCollage />
-
-        <header className="relative z-10 space-y-4 pt-12 md:pt-[540px]">
-          <h1 className={pageTitleClass}>{VISION.title}</h1>
-
-          <p className={introTextClass}>{VISION.intro}</p>
-        </header>
+      <div className="hidden md:block -mx-[25%] w-[150%]">
+        <img
+          src="/vision/group.png"
+          alt="A collage of digital and physical product touchpoints"
+          draggable={false}
+          className="w-full"
+        />
       </div>
+
+      <header className="space-y-4">
+        <h1 className={pageTitleClass}>{VISION.title}</h1>
+        <p className={introTextClass}>{VISION.intro}</p>
+      </header>
 
       <section className="space-y-5">
         {VISION.body.map((p) => (
