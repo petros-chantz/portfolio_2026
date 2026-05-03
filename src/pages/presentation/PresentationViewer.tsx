@@ -10,6 +10,11 @@ import {
 
 import { NotFound } from "../NotFound";
 import { PageNavbar } from "../../ui/PageNavbar";
+import {
+  sectionTitleClass,
+  bodyMutedClass,
+  navUtilityLinkClass,
+} from "../../ui/typography";
 
 import {
   getAllowedKeys,
@@ -75,6 +80,36 @@ function RestartButton({
   );
 }
 
+function ClosingState() {
+  return (
+    <div className="text-center space-y-8 max-w-sm px-4">
+      <div className="space-y-4">
+        <h2 className={sectionTitleClass}>Thanks for reviewing.</h2>
+        <p className={bodyMutedClass}>
+          I’m happy to share more context
+          <span className="block">privately on request.</span>
+        </p>
+      </div>
+      <div className="flex items-center justify-center gap-6">
+        <a
+          href="mailto:petros.chantz@gmail.com"
+          className={navUtilityLinkClass}
+        >
+          Email
+        </a>
+        <a
+          href="https://www.linkedin.com/in/petroschantz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={navUtilityLinkClass}
+        >
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export function PresentationViewer() {
   const [searchParams] = useSearchParams();
   const key = searchParams.get("key") ?? "";
@@ -90,11 +125,12 @@ export function PresentationViewer() {
 
   const [index, setIndex] = useState(0);
 
+  const TOTAL_STEPS = SLIDE_COUNT + 1;
+  const isClosing = index === SLIDE_COUNT;
   const canPrev = index > 0;
-  const isLast = index === slides.length - 1;
 
   const prev = () => setIndex((v) => Math.max(0, v - 1));
-  const next = () => setIndex((v) => Math.min(slides.length - 1, v + 1));
+  const next = () => setIndex((v) => Math.min(SLIDE_COUNT, v + 1));
   const restart = () => setIndex(0);
 
   useNoIndex(isValid);
@@ -178,102 +214,100 @@ export function PresentationViewer() {
             </AnimatePresence>
           </div>
 
-          {/* Slide card area centered */}
+          {/* Main content area */}
           <div className="min-h-0 flex flex-1 items-center justify-center">
-            <div
-              className="mx-auto w-full max-w-270 desktop:max-w-360 cursor-pointer select-none"
-              onClick={onClickSlide}
-              onTouchStart={onTouchStart}
-              onTouchEnd={onTouchEnd}
-              role="presentation"
-            >
+            {isClosing ? (
+              <ClosingState />
+            ) : (
               <div
-                className="
-                  relative
-                  w-full
-                  aspect-video
-                  max-h-[68dvh]
-                  overflow-hidden
-                  rounded-xl
-                  bg-(--color-bg)
-                  border border-black/5
-                  shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_24px_rgba(0,0,0,0.08)]
-                "
+                className="mx-auto w-full max-w-270 desktop:max-w-360 cursor-pointer select-none"
+                onClick={onClickSlide}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+                role="presentation"
               >
-                <img
-                  src={slides[index]}
-                  alt={`Slide ${index + 1}`}
-                  className="h-full w-full object-contain"
-                  draggable={false}
-                />
+                <div
+                  className="
+                    relative
+                    w-full
+                    aspect-video
+                    max-h-[68dvh]
+                    overflow-hidden
+                    rounded-xl
+                    bg-(--color-bg)
+                    border border-black/5
+                    shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_24px_rgba(0,0,0,0.08)]
+                  "
+                >
+                  <img
+                    src={slides[index]}
+                    alt={`Slide ${index + 1}`}
+                    className="h-full w-full object-contain"
+                    draggable={false}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Controls BELOW the slide */}
           <div className="mt-6">
-            <div className="relative mx-auto w-full max-w-360">
-              {/* Center arrow nav + counter (always centered) */}
-              <div className="flex items-center justify-center gap-3">
-                {/* Mobile: show restart above arrows (only on last slide) */}
-                <div className="md:hidden absolute left-1/2 -translate-x-1/2 -top-10">
-                  <RestartButton show={isLast} onRestart={restart} />
-                </div>
-
-                <button
-                  type="button"
-                  onClick={prev}
-                  disabled={!canPrev}
-                  className="
-                    inline-flex items-center justify-center
-                    rounded-full border border-black/10 bg-white
-                    p-2
-                    transition
-                    hover:bg-black/2
-                    disabled:opacity-40
-                  "
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeftIcon
-                    className="h-6 w-6 text-black"
-                    aria-hidden="true"
-                  />
-                </button>
-
+            {isClosing ? (
+              /* Closing state: counter + restart, no chevrons */
+              <div className="flex items-center justify-center gap-4">
                 <div className="text-sm tabular-nums text-(--color-text-secondary)">
-                  {pad2(index + 1)} / {pad2(slides.length)}
+                  {pad2(TOTAL_STEPS)} / {pad2(TOTAL_STEPS)}
                 </div>
-
-                <button
-                  type="button"
-                  onClick={next}
-                  disabled={isLast}
-                  className="
-                    inline-flex items-center justify-center
-                    rounded-full border border-black/10 bg-white
-                    p-2
-                    transition
-                    hover:bg-black/2
-                    disabled:opacity-40
-                  "
-                  aria-label="Next slide"
-                >
-                  <ChevronRightIcon
-                    className="h-6 w-6 text-black"
-                    aria-hidden="true"
-                  />
-                </button>
+                <RestartButton show={true} onRestart={restart} />
               </div>
+            ) : (
+              <div className="relative mx-auto w-full max-w-360">
+                {/* Center arrow nav + counter (always centered) */}
+                <div className="flex items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={prev}
+                    disabled={!canPrev}
+                    className="
+                      inline-flex items-center justify-center
+                      rounded-full border border-black/10 bg-white
+                      p-2
+                      transition
+                      hover:bg-black/2
+                      disabled:opacity-40
+                    "
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeftIcon
+                      className="h-6 w-6 text-black"
+                      aria-hidden="true"
+                    />
+                  </button>
 
-              {/* Desktop restart stays on the right */}
-              <div className="hidden md:block">
-                <RestartButton
-                  show={isLast}
-                  onRestart={restart}
-                  className="absolute right-0 top-1/2 -translate-y-1/2"
-                />
+                  <div className="text-sm tabular-nums text-(--color-text-secondary)">
+                    {pad2(index + 1)} / {pad2(TOTAL_STEPS)}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={next}
+                    className="
+                      inline-flex items-center justify-center
+                      rounded-full border border-black/10 bg-white
+                      p-2
+                      transition
+                      hover:bg-black/2
+                    "
+                    aria-label="Next slide"
+                  >
+                    <ChevronRightIcon
+                      className="h-6 w-6 text-black"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </main>
