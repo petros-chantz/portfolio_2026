@@ -24,7 +24,7 @@ export const HOME = {
       { text: "With " },
       { text: "5+ years", bold: true },
       {
-        text: " in B2B product design, I’ve shipped internal tools, large platforms and B2B e-commerce experiences. I have an affinity for designing complex products shaped by legacy ERP constraints, adoption challenges, shadow IT and low trust in systems.",
+        text: " in B2B product design, I’ve shipped internal tools, large platforms and B2B e\u2011commerce experiences. I have an affinity for designing complex products shaped by legacy ERP constraints, adoption challenges, shadow IT and low trust in systems.",
       },
     ],
 
