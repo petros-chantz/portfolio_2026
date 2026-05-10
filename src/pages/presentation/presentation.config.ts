@@ -18,7 +18,7 @@ export function pad2(n: number) {
 }
 
 export function slideUrl(index0: number) {
-  return `/private/slides/${pad2(index0 + 1)}.png`;
+  return `/private/slides/Portfolio${pad2(index0 + 1)}.png`;
 }
 
 export function preload(url: string) {

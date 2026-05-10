@@ -183,8 +183,8 @@ export function PresentationViewer() {
       </div>
 
       {/* Viewport area (no scrolling) */}
-      <main className="h-dvh px-6 pb-8 pt-20">
-        <div className="mx-auto flex h-full w-full max-w-6xl flex-col">
+      <main className="h-dvh px-2 pb-3 pt-20">
+        <div className="flex h-full w-full flex-col">
           {/* Mobile-only note above slides (centered) */}
           <div className="relative md:hidden mt-2 mb-3 h-8 px-4">
             <AnimatePresence>
@@ -220,32 +220,27 @@ export function PresentationViewer() {
               <ClosingState />
             ) : (
               <div
-                className="mx-auto w-full max-w-270 desktop:max-w-360 cursor-pointer select-none"
+                className="flex justify-center cursor-pointer select-none"
                 onClick={onClickSlide}
                 onTouchStart={onTouchStart}
                 onTouchEnd={onTouchEnd}
                 role="presentation"
               >
-                <div
+                <img
+                  src={slides[index]}
+                  alt={`Slide ${index + 1}`}
                   className="
-                    relative
-                    w-full
-                    aspect-video
-                    max-h-[68dvh]
-                    overflow-hidden
+                    block
+                    max-h-[86dvh]
+                    max-w-[98vw]
+                    w-auto
+                    h-auto
                     rounded-xl
-                    bg-(--color-bg)
                     border border-black/5
                     shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_24px_rgba(0,0,0,0.08)]
                   "
-                >
-                  <img
-                    src={slides[index]}
-                    alt={`Slide ${index + 1}`}
-                    className="h-full w-full object-contain"
-                    draggable={false}
-                  />
-                </div>
+                  draggable={false}
+                />
               </div>
             )}
           </div>
@@ -271,7 +266,7 @@ export function PresentationViewer() {
                     className="
                       inline-flex items-center justify-center
                       rounded-full border border-black/10 bg-white
-                      p-2
+                      p-1.5
                       transition
                       hover:bg-black/2
                       disabled:opacity-40
@@ -279,7 +274,7 @@ export function PresentationViewer() {
                     aria-label="Previous slide"
                   >
                     <ChevronLeftIcon
-                      className="h-6 w-6 text-black"
+                      className="h-4 w-4 text-black"
                       aria-hidden="true"
                     />
                   </button>
@@ -294,14 +289,14 @@ export function PresentationViewer() {
                     className="
                       inline-flex items-center justify-center
                       rounded-full border border-black/10 bg-white
-                      p-2
+                      p-1.5
                       transition
                       hover:bg-black/2
                     "
                     aria-label="Next slide"
                   >
                     <ChevronRightIcon
-                      className="h-6 w-6 text-black"
+                      className="h-4 w-4 text-black"
                       aria-hidden="true"
                     />
                   </button>
