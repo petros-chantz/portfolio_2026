@@ -16,7 +16,7 @@ export const HOME = {
   about: [
     [
       {
-        text: "I design intentional and strategic digital products for organisations navigating change. My aim is to bring forward meaning and intention into digital experiences by connecting design, technology and data.",
+        text: "I design intentional and strategic digital products for organisations navigating change.",
       },
     ],
 
