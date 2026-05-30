@@ -7,7 +7,7 @@ export function ProjectsPage() {
   const canonical = `${SITE_URL}/`;
 
   return (
-    <div className="space-y-8 pb-12 md:space-y-10 md:pb-16">
+    <div className="space-y-8 pb-12 lg:space-y-10 lg:pb-16">
       <Seo
         title={SITE_CONFIG.name}
         description={SITE_CONFIG.description}

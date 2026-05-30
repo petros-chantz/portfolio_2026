@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Seo } from "../../seo/Seo";
 import { SITE_URL, SITE_CONFIG } from "../../lib/config";
 import {
@@ -14,7 +14,6 @@ import {
 } from "./projectContent";
 import { TopicTagList } from "./components/TopicTag";
 import { BackLink } from "./components/BackLink";
-import { Link } from "react-router-dom";
 
 const ProjectBlocks = lazy(() => import("./components/ProjectBlocks").then((m) => ({ default: m.ProjectBlocks })));
 
