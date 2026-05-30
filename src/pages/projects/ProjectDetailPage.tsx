@@ -42,6 +42,7 @@ export function ProjectDetailPage() {
         description={project.summary}
         canonical={canonical}
         ogImage={SITE_CONFIG.ogImage}
+        ogImageAlt={SITE_CONFIG.ogImageAlt}
       />
 
       <BackLink />

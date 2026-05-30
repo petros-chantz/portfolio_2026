@@ -10,4 +10,5 @@ export const SITE_CONFIG = {
   description:
     "Strategic digital product designer balancing systems thinking and craft. Selected work by Petros Chantzopoulos.",
   ogImage: "https://petros.work/og.png",
+  ogImageAlt: "Petros Chantzopoulos — Strategic Digital Product Designer",
 } as const;

@@ -13,6 +13,7 @@ export function ProjectsPage() {
         description={SITE_CONFIG.description}
         canonical={canonical}
         ogImage={SITE_CONFIG.ogImage}
+        ogImageAlt={SITE_CONFIG.ogImageAlt}
       />
 
       <div className="space-y-5">
