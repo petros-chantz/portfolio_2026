@@ -111,8 +111,14 @@ export function ProjectDetailPage() {
       >
         <Link
           to="/"
-          className="text-sm text-(--color-text-secondary) underline underline-offset-4 decoration-black/20 transition hover:text-(--color-text-primary)"
+          className="group inline-flex items-center gap-1.5 text-sm text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
         >
+          <span
+            aria-hidden="true"
+            className="inline-block transform-gpu transition-transform duration-200 ease-out group-hover:-translate-x-0.5"
+          >
+            ←
+          </span>
           Back to all work
         </Link>
 
@@ -121,18 +127,30 @@ export function ProjectDetailPage() {
             <Link
               to={`/projects/${siblings.previous.slug}`}
               aria-label={`Previous: ${siblings.previous.title}`}
-              className="text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
+              className="group inline-flex items-center gap-1.5 text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
             >
-              ← Previous
+              <span
+                aria-hidden="true"
+                className="inline-block transform-gpu transition-transform duration-200 ease-out group-hover:-translate-x-0.5"
+              >
+                &larr;
+              </span>
+              Previous
             </Link>
           )}
           {siblings?.next && (
             <Link
               to={`/projects/${siblings.next.slug}`}
               aria-label={`Next: ${siblings.next.title}`}
-              className="text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
+              className="group inline-flex items-center gap-1.5 text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
             >
-              Next →
+              Next
+              <span
+                aria-hidden="true"
+                className="inline-block transform-gpu transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+              >
+                &rarr;
+              </span>
             </Link>
           )}
         </div>
