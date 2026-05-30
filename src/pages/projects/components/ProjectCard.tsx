@@ -1,52 +1,44 @@
 import { Link } from "react-router-dom";
-import {
-  cardSummaryClass,
-  cardTitleClass,
-  metaTextClass,
-} from "../../../ui/typography";
-import type { Project } from "../Projects.data";
+import type { ProjectMeta } from "../projectContent";
+import { TopicTagList } from "./TopicTag";
 
 type Props = {
-  project: Project;
-  view: "grid" | "list";
+  project: ProjectMeta;
 };
 
-export function ProjectCard({ project, view }: Props) {
-  if (view === "list") {
-    return (
-      <Link
-        to={`/projects/${project.slug}`}
-        className="group -mx-3 flex gap-4 rounded-xl p-3 transition hover:bg-black/3"
-      >
+export function ProjectCard({ project }: Props) {
+  return (
+    <Link
+      to={`/projects/${project.slug}`}
+      className="group block rounded-2xl p-4 transition duration-250 ease-out hover:-translate-y-0.5 hover:scale-[1.015]"
+      aria-label={`Read case study: ${project.title}`}
+    >
+      <div className="flex items-start gap-5">
         <div
-          className="h-20 w-28 shrink-0 rounded-lg"
+          className="aspect-[4/3] w-[42%] shrink-0 rounded-lg"
           style={{ backgroundColor: project.coverBg }}
         />
-        <div className="space-y-1 py-0.5">
-          <div className={metaTextClass}>
-            {project.category}&ensp;·&ensp;{project.year}
-          </div>
-          <h3 className={cardTitleClass}>{project.title}</h3>
-          <p className={`line-clamp-2 ${cardSummaryClass}`}>
-            {project.summary}
-          </p>
+        <div className="min-w-0 flex-1 space-y-3">
+          <TopicTagList topics={project.topics} />
+        <h3 className="text-[1.28rem] font-extrabold leading-[1.12] tracking-[-0.02em] text-(--color-text-primary)">
+          {project.title}
+        </h3>
+        <p className="text-[1.02rem] font-medium leading-[1.42] text-(--color-text-primary)">
+          {project.subtitle}
+        </p>
+        <p className="mt-1 text-[0.88rem] leading-[1.62] text-(--color-text-secondary)">
+          {project.summary}
+        </p>
+        <div className="pt-2 text-[0.92rem] font-semibold leading-[1.2] tracking-[-0.01em] text-emerald-600">
+          Read case study{" "}
+          <span
+            aria-hidden="true"
+            className="inline-block transform-gpu text-emerald-600 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+          >
+            →
+          </span>
         </div>
-      </Link>
-    );
-  }
-
-  return (
-    <Link to={`/projects/${project.slug}`} className="group block space-y-3">
-      <div
-        className="w-full aspect-video rounded-xl transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-        style={{ backgroundColor: project.coverBg }}
-      />
-      <div className="space-y-1">
-        <div className={metaTextClass}>
-          {project.category}&ensp;·&ensp;{project.year}
         </div>
-        <h3 className={cardTitleClass}>{project.title}</h3>
-        <p className={`line-clamp-2 ${cardSummaryClass}`}>{project.summary}</p>
       </div>
     </Link>
   );

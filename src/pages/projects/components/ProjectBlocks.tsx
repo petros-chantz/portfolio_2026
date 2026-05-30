@@ -144,22 +144,27 @@ function RenderImage2({ block }: { block: Image2Block }) {
   );
 }
 
-// ─── Collage photo (matches approach PinnedPhotoItem styling) ─────────────────
+// ─── Collage photo ─────────────────────────────────────────────────────────────
 function CollagePhoto({
   src,
   alt,
   bg = "#ece8e3",
   style,
+  className,
 }: {
   src?: string;
   alt: string;
   bg?: string;
   style: React.CSSProperties;
+  className?: string;
 }) {
   const [ready, setReady] = useState(false);
   return (
     <div
-      className="absolute rounded-md shadow-[0_2px_3px_rgba(0,0,0,0.08),0_14px_34px_rgba(0,0,0,0.14)]"
+      className={[
+        "absolute rounded-md shadow-[0_2px_3px_rgba(0,0,0,0.08),0_14px_34px_rgba(0,0,0,0.14)]",
+        className || "",
+      ].join(" ")}
       style={{ backgroundColor: bg, ...style }}
     >
       {src && (
@@ -181,7 +186,7 @@ function CollagePhoto({
 }
 
 function RenderCollage({ block }: { block: CollageBlock }) {
-  // Predefined rotations and vertical offsets to scatter photos naturally in a line
+  // Predefined rotations and vertical offsets for auto-layout when className is not provided.
   const rots = [-4, 3, -2.5, 5, -3, 2];
   const tops = [14, 2, 22, 8, 18, 4];
   const n = block.images.length;
@@ -190,6 +195,19 @@ function RenderCollage({ block }: { block: CollageBlock }) {
     <figure className="space-y-3">
       <div className="relative w-full" style={{ height: "160px" }}>
         {block.images.map((img, i) => {
+          if (img.className) {
+            return (
+              <CollagePhoto
+                key={i}
+                src={img.src}
+                alt={img.alt}
+                bg={img.bg}
+                className={img.className}
+                style={{}}
+              />
+            );
+          }
+
           // Distribute photos evenly from the left edge to the right edge
           const step = n > 1 ? i / (n - 1) : 0.5;
           const rot = rots[i % rots.length];

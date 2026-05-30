@@ -1,48 +1,67 @@
 import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Nav } from "./Nav";
-import { PageNavbar } from "./PageNavbar";
-import { MobileBottomNav } from "./MobileBottomNav";
-import { MobileTopBar } from "./MobileTopBar";
 import { ErrorBoundary } from "./ErrorBoundary";
 
 export function AppLayout() {
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   return (
-    <div className="min-h-dvh">
+    <div className="min-h-dvh bg-(--color-bg)">
       <ScrollRestoration />
-      {/* Mobile top bar (only on non-home pages) */}
-      {!isHome && <MobileTopBar />}
+      <div className="mx-auto w-full max-w-[1320px] md:grid md:grid-cols-[minmax(280px,340px)_minmax(0,1fr)]">
+        <aside className="border-b border-black/10 px-5 py-8 md:sticky md:top-0 md:h-dvh md:border-b-0 md:px-8 md:py-10">
+          <div className="flex h-full flex-col gap-10">
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <h1 className="font-semibold text-[1.4rem] leading-[1.14] tracking-[-0.02em] text-(--color-text-primary) transition hover:opacity-80">
+                  Petros Chantzopoulos
+                </h1>
+                <p className="text-[0.95rem] font-medium leading-[1.38] text-(--color-text-primary)">
+                  Strategic Digital Product Designer
+                </p>
+                <p className="max-w-2xl text-[1rem] leading-[1.68] text-(--color-text-secondary)">
+                  I design complex product ecosystems that make operational
+                  trust visible, actionable, and scalable.
+                </p>
+              </div>
 
-      {/* Desktop top navbar only */}
-      {!isHome && (
-        <div className="fixed left-0 right-0 top-0 z-20 w-full hidden md:block">
-          <div className="bg-(--color-bg)">
-            <div className="px-5">
-              <PageNavbar />
+              <div className="flex items-center gap-4">
+                <a
+                  href="mailto:petros.chantz@gmail.com"
+                  className="group inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
+                >
+                  <span className="border-b border-black/20 pb-0.5 group-hover:border-black/50">
+                    Email
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transform-gpu no-underline transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  >
+                    ↗
+                  </span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/petroschantz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
+                >
+                  <span className="border-b border-black/20 pb-0.5 group-hover:border-black/50">
+                    LinkedIn
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transform-gpu no-underline transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  >
+                    ↗
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        </aside>
 
-      {/* Left nav, vertically centered (desktop only) */}
-      <aside className="fixed left-0 top-1/2 z-30 -translate-y-1/2 px-4 hidden md:block">
-        <div className="w-45">
-          <Nav />
-        </div>
-      </aside>
-
-      {/* Content area */}
-      <main className="md:pl-55">
-        <div
-          className={`mx-auto w-full px-4 ${
-            isHome
-              ? "max-w-3xl pt-14 pb-24 md:pt-20 md:pb-10"
-              : "max-w-3xl pt-20 pb-24 md:pb-10"
-          }`}
-        >
+        <main className="px-5 py-8 md:px-10 md:py-10">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={location.pathname}
@@ -56,11 +75,8 @@ export function AppLayout() {
               </ErrorBoundary>
             </motion.div>
           </AnimatePresence>
-        </div>
-      </main>
-
-      {/* Mobile bottom navigation */}
-      <MobileBottomNav />
+        </main>
+      </div>
     </div>
   );
 }

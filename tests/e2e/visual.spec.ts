@@ -19,45 +19,34 @@ async function stabilizePage(page: Page) {
   });
 }
 
-test("visual: home desktop", async ({ page }) => {
+test("visual: work desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("home-desktop.png", {
+  await expect(page).toHaveScreenshot("work-desktop.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });
 });
 
-test("visual: approach desktop", async ({ page }) => {
+test("visual: project detail desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/approach");
+  await page.goto("/projects/internal-ops-platform");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("approach-desktop.png", {
+  await expect(page).toHaveScreenshot("project-detail-desktop.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });
 });
 
-test("visual: vision desktop", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("/vision");
-  await stabilizePage(page);
-
-  await expect(page).toHaveScreenshot("vision-desktop.png", {
-    fullPage: false,
-    maxDiffPixelRatio: 0.01,
-  });
-});
-
-test("visual: approach mobile", async ({ page }) => {
+test("visual: work mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/approach");
+  await page.goto("/");
   await stabilizePage(page);
 
-  await expect(page).toHaveScreenshot("approach-mobile.png", {
+  await expect(page).toHaveScreenshot("work-mobile.png", {
     fullPage: false,
     maxDiffPixelRatio: 0.01,
   });

@@ -1,5 +1,0 @@
-import type { PropsWithChildren } from "react";
-
-export function Container({ children }: PropsWithChildren) {
-  return <div className="mx-auto w-full max-w-3xl px-4 py-10">{children}</div>;
-}

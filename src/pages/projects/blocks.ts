@@ -65,18 +65,18 @@ export type Image2Block = {
 
 /**
  * Scattered collage — absolute-positioned images inside a fixed-height
- * container (like the pinned photos on Approach). You control each photo's
+ * container. You control each photo's
  * position and rotation via `className`.
  */
 export type CollageBlock = {
   type: "collage";
-  height?: number; // unused — renderer auto-sizes to 160 px
+  height?: number;
   caption?: string;
   images: {
     src?: string;
     alt: string;
     bg?: string;
-    className?: string; // unused — renderer auto-distributes in a horizontal line
+    className?: string;
   }[];
 };
 
