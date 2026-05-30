@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /presentation
-Disallow: /private/
 Sitemap: https://petros.work/sitemap.xml
 
 # Known AI crawlers (best-effort blocks)

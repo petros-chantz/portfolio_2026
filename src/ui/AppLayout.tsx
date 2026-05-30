@@ -1,6 +1,35 @@
 import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ErrorBoundary } from "./ErrorBoundary";
+import { SITE_CONFIG } from "../lib/config";
+
+function SidebarLink({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className="group inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
+    >
+      <span className="border-b border-black/20 pb-0.5 group-hover:border-black/50">
+        {label}
+      </span>
+      <span
+        aria-hidden="true"
+        className="inline-block transform-gpu no-underline transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      >
+        ↗
+      </span>
+    </a>
+  );
+}
 
 export function AppLayout() {
   const location = useLocation();
@@ -14,48 +43,23 @@ export function AppLayout() {
             <div className="space-y-5">
               <div className="space-y-2">
                 <h1 className="font-semibold text-[1.4rem] leading-[1.14] tracking-[-0.02em] text-(--color-text-primary) transition hover:opacity-80">
-                  Petros Chantzopoulos
+                  {SITE_CONFIG.name}
                 </h1>
                 <p className="text-[0.95rem] font-medium leading-[1.38] text-(--color-text-primary)">
-                  Strategic Digital Product Designer
+                  {SITE_CONFIG.role}
                 </p>
                 <p className="max-w-2xl text-[1rem] leading-[1.68] text-(--color-text-secondary)">
-                  I design complex product ecosystems that make operational
-                  trust visible, actionable, and scalable.
+                  {SITE_CONFIG.tagline}
                 </p>
               </div>
 
               <div className="flex items-center gap-4">
-                <a
-                  href="mailto:petros.chantz@gmail.com"
-                  className="group inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
-                >
-                  <span className="border-b border-black/20 pb-0.5 group-hover:border-black/50">
-                    Email
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="inline-block transform-gpu no-underline transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  >
-                    ↗
-                  </span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/petroschantz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary)"
-                >
-                  <span className="border-b border-black/20 pb-0.5 group-hover:border-black/50">
-                    LinkedIn
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="inline-block transform-gpu no-underline transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  >
-                    ↗
-                  </span>
-                </a>
+                <SidebarLink href={`mailto:${SITE_CONFIG.email}`} label="Email" />
+                <SidebarLink
+                  href={SITE_CONFIG.linkedin}
+                  label="LinkedIn"
+                  external
+                />
               </div>
             </div>
           </div>
@@ -80,3 +84,4 @@ export function AppLayout() {
     </div>
   );
 }
+

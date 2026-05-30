@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
 
-test("work page renders project listing", async ({ page }) => {
+test("home page renders project listing", async ({ page }) => {
   const pageErrors: string[] = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
 
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Selected work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Petros Chantzopoulos" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(3);
 
   expect(pageErrors).toEqual([]);
@@ -20,7 +20,13 @@ test("project detail route renders", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Back to all work" }).first()).toBeVisible();
 });
 
-test("removed sections return not found", async ({ page }) => {
+test("project card links navigate to detail page", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: /Read case study:/ }).first().click();
+  await expect(page.getByRole("link", { name: "Back to all work" }).first()).toBeVisible();
+});
+
+test("removed sections return 404", async ({ page }) => {
   await page.goto("/approach");
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
 
@@ -31,7 +37,7 @@ test("removed sections return not found", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
 });
 
-test("404 route is noindex and has safe recovery", async ({ page }) => {
+test("unknown route is noindex and has safe recovery link", async ({ page }) => {
   await page.goto("/this-route-does-not-exist");
 
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
@@ -43,10 +49,11 @@ test("404 route is noindex and has safe recovery", async ({ page }) => {
   );
 });
 
-test("mobile layout stacks profile and work content", async ({ page }) => {
+test("mobile: sidebar and project listing are visible", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
   await page.goto("/");
-  await expect(page.getByRole("navigation", { name: "Primary" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Selected work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Petros Chantzopoulos" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(3);
 });
+

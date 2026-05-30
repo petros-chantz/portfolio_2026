@@ -1,7 +1,7 @@
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { Suspense, lazy } from "react";
+import { useParams } from "react-router-dom";
 import { Seo } from "../../seo/Seo";
-import { SITE_URL } from "../../lib/config";
+import { SITE_URL, SITE_CONFIG } from "../../lib/config";
 import {
   introTextClass,
   metaTextClass,
@@ -12,8 +12,11 @@ import {
   getProjectSiblings,
   getProjectBlocks,
 } from "./projectContent";
-import { ProjectBlocks } from "./components/ProjectBlocks";
 import { TopicTagList } from "./components/TopicTag";
+import { BackLink } from "./components/BackLink";
+import { Link } from "react-router-dom";
+
+const ProjectBlocks = lazy(() => import("./components/ProjectBlocks").then((m) => ({ default: m.ProjectBlocks })));
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -25,19 +28,13 @@ export function ProjectDetailPage() {
     return (
       <div className="space-y-3 pt-8">
         <p className="text-(--color-text-secondary)">Project not found.</p>
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm underline underline-offset-4 text-(--color-text-secondary) hover:text-(--color-text-primary)"
-        >
-          <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden="true" />
-          Back to all work
-        </Link>
+        <BackLink />
       </div>
     );
   }
 
   const canonical = `${SITE_URL}/projects/${project.slug}`;
-  const seoTitle = `${project.title} — Petros Chantzopoulos`;
+  const seoTitle = `${project.title} — ${SITE_CONFIG.name}`;
 
   return (
     <div className="space-y-8 md:space-y-10 pb-16">
@@ -45,15 +42,10 @@ export function ProjectDetailPage() {
         title={seoTitle}
         description={project.summary}
         canonical={canonical}
+        ogImage={SITE_CONFIG.ogImage}
       />
 
-      <Link
-        to="/"
-        className="inline-flex items-center gap-1.5 text-sm text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
-      >
-        <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden="true" />
-        Back to all work
-      </Link>
+      <BackLink />
 
       <header className="space-y-2.5 md:space-y-3">
         <TopicTagList topics={project.topics} />
@@ -106,7 +98,11 @@ export function ProjectDetailPage() {
         )}
       </figure>
 
-      {blocks && <ProjectBlocks blocks={blocks} />}
+      {blocks && (
+        <Suspense fallback={null}>
+          <ProjectBlocks blocks={blocks} />
+        </Suspense>
+      )}
 
       <nav
         aria-label="Case study navigation"
