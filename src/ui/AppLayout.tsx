@@ -10,8 +10,16 @@ export function AppLayout() {
   return (
     <div className="min-h-dvh bg-(--color-bg)">
       <ScrollRestoration />
+
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
+      >
+        Skip to main content
+      </a>
+
       <div className="mx-auto w-full max-w-[1320px] lg:grid lg:grid-cols-[minmax(280px,340px)_minmax(0,1fr)]">
-        <aside className="px-5 py-8 lg:sticky lg:top-0 lg:h-dvh lg:px-8 lg:py-10">
+        <aside aria-label="About" className="px-5 py-8 lg:sticky lg:top-0 lg:h-dvh lg:px-8 lg:py-10">
           <div className="flex h-full flex-col gap-10">
             <div className="space-y-5">
               <div className="space-y-2">
@@ -36,7 +44,7 @@ export function AppLayout() {
           </div>
         </aside>
 
-        <main className="px-5 py-8 lg:px-10 lg:py-10">
+        <main id="main-content" className="px-5 py-8 lg:px-10 lg:py-10">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={location.pathname}

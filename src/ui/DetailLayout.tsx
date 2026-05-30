@@ -11,6 +11,13 @@ export function DetailLayout() {
     <div className="min-h-dvh bg-(--color-bg)">
       <ScrollRestoration />
 
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
+      >
+        Skip to main content
+      </a>
+
       <header className="sticky top-0 z-10 bg-(--color-bg)">
         <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between px-5 py-4 lg:px-10">
           <Link
@@ -27,7 +34,7 @@ export function DetailLayout() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-[1320px] px-5 py-8 lg:px-10 lg:py-10">
+      <main id="main-content" className="mx-auto w-full max-w-[1320px] px-5 py-8 lg:px-10 lg:py-10">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={location.pathname}

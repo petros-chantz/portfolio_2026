@@ -55,34 +55,35 @@ export function ProjectDetailPage() {
         <p className={introTextClass}>{project.summary}</p>
       </header>
 
-      <div className="grid gap-3 rounded-xl border border-black/8 p-4 sm:grid-cols-2 md:grid-cols-4">
+      <dl className="grid gap-3 rounded-xl border border-black/8 p-4 sm:grid-cols-2 md:grid-cols-4">
         {project.role && (
           <div>
-            <p className={metaTextClass}>Role</p>
-            <p className="text-[0.94rem] text-(--color-text-primary)">{project.role}</p>
+            <dt className={metaTextClass}>Role</dt>
+            <dd className="text-[0.94rem] text-(--color-text-primary)">{project.role}</dd>
           </div>
         )}
         {project.teamSize && (
           <div>
-            <p className={metaTextClass}>Team size</p>
-            <p className="text-[0.94rem] text-(--color-text-primary)">{project.teamSize}</p>
+            <dt className={metaTextClass}>Team size</dt>
+            <dd className="text-[0.94rem] text-(--color-text-primary)">{project.teamSize}</dd>
           </div>
         )}
         {project.timeframe && (
           <div>
-            <p className={metaTextClass}>Timeframe</p>
-            <p className="text-[0.94rem] text-(--color-text-primary)">{project.timeframe}</p>
+            <dt className={metaTextClass}>Timeframe</dt>
+            <dd className="text-[0.94rem] text-(--color-text-primary)">{project.timeframe}</dd>
           </div>
         )}
         {project.scope && (
           <div>
-            <p className={metaTextClass}>Scope</p>
-            <p className="text-[0.94rem] text-(--color-text-primary)">{project.scope}</p>
+            <dt className={metaTextClass}>Scope</dt>
+            <dd className="text-[0.94rem] text-(--color-text-primary)">{project.scope}</dd>
           </div>
         )}
-      </div>
+      </dl>
 
       <figure
+        aria-hidden={!project.heroImage}
         className="w-full aspect-video overflow-hidden rounded-xl md:rounded-2xl"
         style={{ backgroundColor: project.coverBg }}
       >
@@ -118,6 +119,7 @@ export function ProjectDetailPage() {
           {siblings?.previous && (
             <Link
               to={`/projects/${siblings.previous.slug}`}
+              aria-label={`Previous: ${siblings.previous.title}`}
               className="text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
             >
               ← Previous
@@ -126,6 +128,7 @@ export function ProjectDetailPage() {
           {siblings?.next && (
             <Link
               to={`/projects/${siblings.next.slug}`}
+              aria-label={`Next: ${siblings.next.title}`}
               className="text-(--color-text-secondary) hover:text-(--color-text-primary) transition"
             >
               Next →

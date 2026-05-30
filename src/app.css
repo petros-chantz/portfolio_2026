@@ -49,3 +49,10 @@ input[type="button"] {
 @theme {
   --breakpoint-desktop: 110rem; /* 1760px */
 }
+
+/* Accessible focus ring — visible for keyboard navigation, hidden for mouse */
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+  border-radius: 2px;
+}

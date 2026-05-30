@@ -24,6 +24,7 @@ export function ExternalLink({ href, label, external }: Props) {
       >
         ↗
       </span>
+      {external && <span className="sr-only"> (opens in new tab)</span>}
     </a>
   );
 }

@@ -270,7 +270,7 @@ export function ProjectBlocks({ blocks }: { blocks: ContentBlock[] }) {
             return <RenderQuote key={i} block={block} />;
           case "divider":
             return (
-              <div key={i} className="flex items-center gap-4">
+              <div key={i} aria-hidden="true" className="flex items-center gap-4">
                 <div className="h-px flex-1 bg-black/10" />
                 {block.label && (
                   <span className="text-xs text-(--color-text-secondary)">
