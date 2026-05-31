@@ -7,7 +7,7 @@ test("home page renders project listing", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "Petros Chantzopoulos" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(3);
+  await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(4);
 
   expect(pageErrors).toEqual([]);
 });
@@ -54,6 +54,6 @@ test("mobile: sidebar and project listing are visible", async ({ page }) => {
 
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Petros Chantzopoulos" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(3);
+  await expect(page.getByRole("link", { name: /Read case study:/ })).toHaveCount(4);
 });
 
