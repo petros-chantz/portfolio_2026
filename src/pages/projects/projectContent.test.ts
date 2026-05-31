@@ -7,8 +7,8 @@ import {
 } from "./projectContent";
 
 describe("PROJECT_LIST", () => {
-  it("contains exactly 3 projects", () => {
-    expect(PROJECT_LIST).toHaveLength(3);
+  it("contains exactly 4 projects", () => {
+    expect(PROJECT_LIST).toHaveLength(4);
   });
 
   it("each project has required fields", () => {
