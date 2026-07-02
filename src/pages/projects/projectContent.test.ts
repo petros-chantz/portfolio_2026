@@ -167,8 +167,8 @@ describe("APS Allocations content", () => {
       .map((block) => block.heading)
       .filter(Boolean);
 
-    expect(headings).toContain("Campaigns");
-    expect(headings).toContain("Stores");
+    expect(headings).toContain("Campaign creation");
+    expect(headings).toContain("Store selection");
     expect(headings).toContain("Allocation Overview");
     expect(headings).toContain("Looking back");
   });
@@ -181,7 +181,7 @@ describe("APS Allocations content", () => {
     expect(narrativeBlock).toBeDefined();
     expect(narrativeBlock?.body).toContain("Conversations with Albert Heijn campaign managers");
     expect(narrativeBlock?.body).toContain("the most important numbers visible throughout the entire process");
-    expect(narrativeBlock?.caption).toBeUndefined();
+    expect(narrativeBlock?.caption).toBe("A supporting visual for the allocation validation workflow.");
   });
 
   it("provides alt text and loading backgrounds for every APS image", () => {
