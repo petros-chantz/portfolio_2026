@@ -24,8 +24,8 @@ test.describe("APS Allocations detail page", () => {
 
     await expect(page.getByText("Campaign planning", { exact: true })).toBeVisible();
     await expect(page.getByText("Allocation review", { exact: true })).toBeVisible();
-    await expect(page.getByRole("heading", { level: 3, name: "Campaigns" })).toBeVisible();
-    await expect(page.getByRole("heading", { level: 3, name: "Stores" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 3, name: "Campaign creation" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 3, name: "Store selection" })).toBeVisible();
     await expect(page.getByRole("heading", { level: 2, name: "Allocation Overview" })).toBeVisible();
 
     await expect(page.getByText("Conversations with Albert Heijn campaign managers")).toBeVisible();
@@ -44,7 +44,7 @@ test.describe("APS Allocations detail page", () => {
     await page.goto("/projects/APS-allocations");
 
     await expect(page.getByRole("heading", { level: 1, name: "APS Allocations" })).toBeVisible();
-    await expect(page.getByText("Allocation Overview")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "Allocation Overview" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Back to all work" }).first()).toBeVisible();
   });
 });

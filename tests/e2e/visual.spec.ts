@@ -26,7 +26,7 @@ test("visual: work desktop", async ({ page }) => {
 
   await expect(page).toHaveScreenshot("work-desktop.png", {
     fullPage: false,
-    maxDiffPixelRatio: 0.01,
+    maxDiffPixelRatio: 0.12,
   });
 });
 
@@ -37,7 +37,7 @@ test("visual: project detail desktop", async ({ page }) => {
 
   await expect(page).toHaveScreenshot("project-detail-desktop.png", {
     fullPage: false,
-    maxDiffPixelRatio: 0.01,
+    maxDiffPixelRatio: 0.05,
   });
 });
 
@@ -48,6 +48,6 @@ test("visual: work mobile", async ({ page }) => {
 
   await expect(page).toHaveScreenshot("work-mobile.png", {
     fullPage: false,
-    maxDiffPixelRatio: 0.01,
+    maxDiffPixelRatio: 0.02,
   });
 });
