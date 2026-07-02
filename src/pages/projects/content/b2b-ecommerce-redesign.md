@@ -1,7 +1,7 @@
 ---
 slug: b2b-ecommerce-redesign
 order: 2
-title: B2B E-Commerce Redesign
+title: APS-allocations
 subtitle: Rebuilding procurement confidence in a high-complexity digital catalogue
 topics: Commerce UX, Information Architecture, ERP Integration
 summary: Rethinking the purchasing experience for a complex B2B catalogue with deep ERP integration and high-stakes procurement constraints. Placeholder sentence for additional summary context.

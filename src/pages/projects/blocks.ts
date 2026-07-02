@@ -29,6 +29,7 @@ export type BlockImage = {
   src?: string; // omit to show a colour placeholder
   alt: string;
   bg?: string; // placeholder colour, defaults to #ece8e3
+  caption?: string; // optional individual caption for the image
 };
 
 // ─── Block types ─────────────────────────────────────────────────────────────
@@ -47,6 +48,24 @@ export type Text2ColBlock = {
   right: string;
   leftHeading?: string;
   rightHeading?: string;
+};
+
+/** Text on the left, image on the right. */
+export type TextImageBlock = {
+  type: "text-image";
+  body: string;
+  image: BlockImage;
+  heading?: string;
+  caption?: string;
+};
+
+/** Image on the left, text on the right. */
+export type ImageTextBlock = {
+  type: "image-text";
+  body: string;
+  image: BlockImage;
+  heading?: string;
+  caption?: string;
 };
 
 /** Single full-width image. */
@@ -97,6 +116,8 @@ export type DividerBlock = {
 export type ContentBlock =
   | TextBlock
   | Text2ColBlock
+  | TextImageBlock
+  | ImageTextBlock
   | ImageBlock
   | Image2Block
   | CollageBlock

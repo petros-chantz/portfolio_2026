@@ -11,7 +11,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           router: ["react-router-dom"],
-          motion: ["framer-motion"],
           markdown: ["react-markdown", "remark-gfm", "rehype-sanitize"],
         },
       },

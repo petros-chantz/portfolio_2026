@@ -5,10 +5,19 @@ import {
   getProjectSiblings,
   getProjectBlocks,
 } from "./projectContent";
+import type {
+  ContentBlock,
+  Image2Block,
+  ImageBlock,
+  ImageTextBlock,
+  TextBlock,
+  TextImageBlock,
+} from "./blocks";
 
 describe("PROJECT_LIST", () => {
-  it("contains exactly 4 projects", () => {
-    expect(PROJECT_LIST).toHaveLength(4);
+  it("contains the current portfolio projects", () => {
+    expect(PROJECT_LIST.length).toBeGreaterThanOrEqual(5);
+    expect(PROJECT_LIST.map((project) => project.slug)).toContain("APS-allocations");
   });
 
   it("each project has required fields", () => {
@@ -102,5 +111,94 @@ describe("getProjectBlocks", () => {
 
   it("returns null for an unknown slug", () => {
     expect(getProjectBlocks("does-not-exist")).toBeNull();
+  });
+});
+
+describe("APS Allocations content", () => {
+  function getApsBlocks(): ContentBlock[] {
+    const blocks = getProjectBlocks("APS-allocations");
+    expect(blocks).not.toBeNull();
+    return blocks ?? [];
+  }
+
+  it("uses the expected metadata fields", () => {
+    const project = getProjectBySlug("APS-allocations");
+    expect(project).not.toBeNull();
+    expect(project?.title).toBe("APS Allocations");
+    expect(project?.client).toBe("Albert Heijn");
+    expect(project?.product).toBe("Campaign Allocation Tool");
+    expect(project?.users).toBe("Albert Heijn Campaign Managers, Marketing Teams");
+    expect(project?.role).toBe("Junior Product Designer");
+    expect(project?.timeline).toBe("Oct 2021 - Dec 2023");
+    expect(project?.team).toBe("1 Project Manager, 4 Engineers, 1 Designer, Business Analysts");
+    expect(project?.scope).toBe("Campaign Workflow Design, Interaction Design, Wireframing, Prototyping");
+  });
+
+  it("loads eight blocks from the companion block file", () => {
+    expect(getApsBlocks()).toHaveLength(8);
+  });
+
+  it("starts with an intro text block without a heading", () => {
+    const [firstBlock] = getApsBlocks();
+    expect(firstBlock?.type).toBe("text");
+    expect((firstBlock as TextBlock).heading).toBeUndefined();
+    expect((firstBlock as TextBlock).body.split(/\n\s*\n/)).toHaveLength(3);
+  });
+
+  it("includes all APS-specific block variants", () => {
+    const types = getApsBlocks().map((block) => block.type);
+    expect(types).toContain("image-2");
+    expect(types).toContain("text-image");
+    expect(types).toContain("image-text");
+    expect(types).toContain("image");
+  });
+
+  it("adds per-image captions to the side-by-side image block", () => {
+    const imagePair = getApsBlocks().find((block) => block.type === "image-2") as Image2Block | undefined;
+    expect(imagePair).toBeDefined();
+    expect(imagePair?.caption).toBeUndefined();
+    expect(imagePair?.images[0].caption).toBe("Campaign planning");
+    expect(imagePair?.images[1].caption).toBe("Allocation review");
+  });
+
+  it("uses the updated section headings", () => {
+    const headings = getApsBlocks()
+      .filter((block): block is TextBlock | TextImageBlock | ImageTextBlock => "heading" in block)
+      .map((block) => block.heading)
+      .filter(Boolean);
+
+    expect(headings).toContain("Campaigns");
+    expect(headings).toContain("Stores");
+    expect(headings).toContain("Allocation Overview");
+    expect(headings).toContain("Looking back");
+  });
+
+  it("preserves the revised campaign-manager narrative", () => {
+    const narrativeBlock = getApsBlocks().find(
+      (block): block is TextImageBlock => block.type === "text-image" && !block.heading,
+    );
+
+    expect(narrativeBlock).toBeDefined();
+    expect(narrativeBlock?.body).toContain("Conversations with Albert Heijn campaign managers");
+    expect(narrativeBlock?.body).toContain("the most important numbers visible throughout the entire process");
+    expect(narrativeBlock?.caption).toBeUndefined();
+  });
+
+  it("provides alt text and loading backgrounds for every APS image", () => {
+    for (const block of getApsBlocks()) {
+      if (block.type === "image-2") {
+        for (const image of block.images) {
+          expect(image.alt.length).toBeGreaterThan(0);
+          expect(image.bg).toBeTruthy();
+        }
+        continue;
+      }
+
+      if (block.type === "image" || block.type === "text-image" || block.type === "image-text") {
+        const image = (block as ImageBlock | TextImageBlock | ImageTextBlock).image;
+        expect(image.alt.length).toBeGreaterThan(0);
+        expect(image.bg).toBeTruthy();
+      }
+    }
   });
 });

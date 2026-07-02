@@ -2,6 +2,7 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
 
 @import "tailwindcss";
 
@@ -55,4 +56,56 @@ input[type="button"] {
   outline: 2px solid #000;
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+.ui-link-inline {
+  @apply inline-flex items-center gap-1.5 text-sm text-(--color-text-secondary) transition hover:text-(--color-text-primary);
+}
+
+.ui-link-inline-arrow-left {
+  @apply inline-block transform-gpu transition-transform duration-200 ease-out;
+}
+
+.ui-link-inline-arrow-right {
+  @apply inline-block transform-gpu transition-transform duration-200 ease-out;
+}
+
+.ui-link-external {
+  @apply inline-flex items-center gap-1.5 text-[0.84rem] font-medium leading-[1.2] text-(--color-text-secondary) transition hover:text-(--color-text-primary);
+}
+
+.ui-link-external-label {
+  @apply border-b border-black/20 pb-0.5;
+}
+
+.ui-brand-link {
+  @apply font-semibold tracking-[-0.02em] text-(--color-text-primary) transition hover:opacity-70;
+}
+
+.ui-card-link {
+  @apply block rounded-2xl p-4 transition duration-250 ease-out hover:-translate-y-0.5 hover:scale-[1.015];
+}
+
+.ui-card-cta {
+  @apply pt-2 text-[0.92rem] font-semibold leading-[1.2] tracking-[-0.01em] text-emerald-600;
+}
+
+.ui-card-cta-arrow {
+  @apply inline-block transform-gpu text-emerald-600 transition-transform duration-200 ease-out;
+}
+
+.ui-link-inline:hover .ui-link-inline-arrow-left {
+  @apply -translate-x-0.5;
+}
+
+.ui-link-inline:hover .ui-link-inline-arrow-right {
+  @apply translate-x-0.5;
+}
+
+.ui-link-external:hover .ui-link-external-label {
+  @apply border-black/50;
+}
+
+.ui-card-link:hover .ui-card-cta-arrow {
+  @apply translate-x-0.5;
 }

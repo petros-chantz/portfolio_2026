@@ -1,6 +1,17 @@
 import { parseFrontmatter } from "../../lib/frontmatter";
 import type { ContentBlock } from "./blocks";
 
+const companionBlockFiles = import.meta.glob<{ blocks: ContentBlock[] }>(
+  "./content/*.blocks.ts",
+  { eager: true },
+) as Record<string, { blocks: ContentBlock[] }>;
+
+function getCompanionBlocks(slug: string): ContentBlock[] | null {
+  const key = `./content/${slug}.blocks.ts`;
+  const mod = companionBlockFiles[key];
+  return mod?.blocks ?? null;
+}
+
 export type ProjectMeta = {
   slug: string;
   title: string;
@@ -8,8 +19,13 @@ export type ProjectMeta = {
   topics: string[];
   summary: string;
   coverBg: string;
+  client?: string;
+  product?: string;
+  users?: string;
   role?: string;
+  team?: string;
   teamSize?: string;
+  timeline?: string;
   timeframe?: string;
   scope?: string;
   heroImage?: string;
@@ -38,21 +54,27 @@ export const PROJECT_LIST: readonly ProjectMeta[] = PROJECT_CONTENT.map(
 function parseProjectMarkdown(path: string, raw: string): ProjectContent {
   const { data, content } = parseFrontmatter(raw);
   const fallbackSlug = path.split("/").pop()?.replace(/\.md$/, "") || "";
+  const slug = data.slug || fallbackSlug;
   return {
-    slug: data.slug || fallbackSlug,
+    slug,
     title: data.title || "Untitled project",
     subtitle: data.subtitle || "",
     topics: parseTopics(data.topics),
     summary: data.summary || "",
     coverBg: data.coverBg || "#ece8e3",
+    client: emptyToUndefined(data.client),
+    product: emptyToUndefined(data.product),
+    users: emptyToUndefined(data.users),
     role: emptyToUndefined(data.role),
+    team: emptyToUndefined(data.team),
     teamSize: emptyToUndefined(data.teamSize),
+    timeline: emptyToUndefined(data.timeline),
     timeframe: emptyToUndefined(data.timeframe),
     scope: emptyToUndefined(data.scope),
     heroImage: emptyToUndefined(data.heroImage),
     heroAlt: emptyToUndefined(data.heroAlt),
     order: Number(data.order || 999),
-    blocks: parseBlocks(content),
+    blocks: getCompanionBlocks(slug) ?? parseBlocks(content),
   };
 }
 
@@ -102,6 +124,12 @@ function textToBlocks(raw: string): ContentBlock[] {
   }
 
   const blocks: ContentBlock[] = [];
+  const firstHeadingIndex = headings[0].index || 0;
+  const intro = text.slice(0, firstHeadingIndex).trim();
+  if (intro) {
+    blocks.push({ type: "text", body: intro });
+  }
+
   for (let i = 0; i < headings.length; i++) {
     const current = headings[i];
     const next = headings[i + 1];

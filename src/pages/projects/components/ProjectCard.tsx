@@ -10,7 +10,7 @@ export function ProjectCard({ project }: Props) {
   return (
     <Link
       to={`/projects/${project.slug}`}
-      className="group block rounded-2xl p-4 transition duration-250 ease-out hover:-translate-y-0.5 hover:scale-[1.015]"
+      className="ui-card-link"
       aria-label={`Read case study: ${project.title}`}
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
@@ -29,11 +29,11 @@ export function ProjectCard({ project }: Props) {
           <p className="mt-1 text-[0.88rem] leading-[1.62] text-(--color-text-secondary)">
             {project.summary}
           </p>
-          <div className="pt-2 text-[0.92rem] font-semibold leading-[1.2] tracking-[-0.01em] text-emerald-600">
+          <div className="ui-card-cta">
             Read case study{" "}
             <span
               aria-hidden="true"
-              className="inline-block transform-gpu text-emerald-600 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+              className="ui-card-cta-arrow"
             >
               →
             </span>

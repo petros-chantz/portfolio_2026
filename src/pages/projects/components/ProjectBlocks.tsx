@@ -13,6 +13,8 @@ import type {
   ContentBlock,
   TextBlock,
   Text2ColBlock,
+  TextImageBlock,
+  ImageTextBlock,
   ImageBlock,
   Image2Block,
   CollageBlock,
@@ -107,6 +109,50 @@ function RenderText2Col({ block }: { block: Text2ColBlock }) {
   );
 }
 
+function RenderTextImage({ block }: { block: TextImageBlock }) {
+  return (
+    <figure className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-start">
+      <div className="space-y-2">
+        {block.heading && <h3 className={subsectionTitleClass}>{block.heading}</h3>}
+        <Prose>{block.body}</Prose>
+      </div>
+      <div className="space-y-3">
+        <BlockImg
+          src={block.image.src}
+          alt={block.image.alt}
+          bg={block.image.bg}
+          className="aspect-video w-full"
+        />
+        {block.caption && (
+          <figcaption className={captionTextClass}>{block.caption}</figcaption>
+        )}
+      </div>
+    </figure>
+  );
+}
+
+function RenderImageText({ block }: { block: ImageTextBlock }) {
+  return (
+    <figure className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-start">
+      <div className="space-y-3">
+        <BlockImg
+          src={block.image.src}
+          alt={block.image.alt}
+          bg={block.image.bg}
+          className="aspect-video w-full"
+        />
+        {block.caption && (
+          <figcaption className={captionTextClass}>{block.caption}</figcaption>
+        )}
+      </div>
+      <div className="space-y-2">
+        {block.heading && <h3 className={subsectionTitleClass}>{block.heading}</h3>}
+        <Prose>{block.body}</Prose>
+      </div>
+    </figure>
+  );
+}
+
 function RenderImage({ block }: { block: ImageBlock }) {
   return (
     <figure className="space-y-3">
@@ -126,15 +172,19 @@ function RenderImage({ block }: { block: ImageBlock }) {
 function RenderImage2({ block }: { block: Image2Block }) {
   return (
     <figure className="space-y-3">
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-8">
         {block.images.map((img, i) => (
-          <BlockImg
-            key={i}
-            src={img.src}
-            alt={img.alt}
-            bg={img.bg}
-            className="aspect-video"
-          />
+          <div key={i} className="space-y-2">
+            <BlockImg
+              src={img.src}
+              alt={img.alt}
+              bg={img.bg}
+              className="aspect-video"
+            />
+            {img.caption && (
+              <figcaption className={captionTextClass}>{img.caption}</figcaption>
+            )}
+          </div>
         ))}
       </div>
       {block.caption && (
@@ -260,6 +310,10 @@ export function ProjectBlocks({ blocks }: { blocks: ContentBlock[] }) {
             return <RenderText key={i} block={block} />;
           case "text-2col":
             return <RenderText2Col key={i} block={block} />;
+          case "text-image":
+            return <RenderTextImage key={i} block={block} />;
+          case "image-text":
+            return <RenderImageText key={i} block={block} />;
           case "image":
             return <RenderImage key={i} block={block} />;
           case "image-2":

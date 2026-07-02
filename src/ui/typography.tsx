@@ -1,5 +1,5 @@
 export const pageTitleClass =
-  "text-[1.8rem] md:text-[clamp(2rem,3.2vw,2.75rem)] font-semibold leading-[1.04] md:leading-[1.02] tracking-[-0.03em] md:tracking-[-0.035em] text-(--color-text-primary)";
+  "text-[1.8rem] md:text-[clamp(2rem,3.2vw,2.75rem)] leading-[1.04] md:leading-[1.02] tracking-[-0.03em] md:tracking-[-0.035em] text-(--color-text-primary)";
 
 export const sectionTitleClass =
   "text-[1.625rem] font-semibold leading-[1.08] tracking-[-0.025em] text-(--color-text-primary)";
