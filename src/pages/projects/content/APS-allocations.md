@@ -1,6 +1,6 @@
 ---
 slug: APS-allocations
-order: 2
+order: 4
 title: APS Allocations
 subtitle: Helping Albert Heijn campaign planners allocate in-store marketing campaigns.
 topics: Internal Tools, Workflow Design

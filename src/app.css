@@ -109,3 +109,7 @@ input[type="button"] {
 .ui-card-link:hover .ui-card-cta-arrow {
   @apply translate-x-0.5;
 }
+
+.ui-text-pretty {
+  text-wrap: pretty;
+}

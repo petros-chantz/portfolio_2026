@@ -29,20 +29,20 @@ export function ProjectDetailPage() {
 
   const canonical = `${SITE_URL}/projects/${project.slug}`;
   const seoTitle = `${project.title} — ${SITE_CONFIG.name}`;
-  const useApsSplitLayout = project.slug === "APS-allocations";
   const timelineValue = project.timeline || project.timeframe;
   const teamValue = project.team || project.teamSize;
-  const apsIntroSource =
-    useApsSplitLayout && blocks?.[0]?.type === "text" && !blocks[0].heading
+  const introSource =
+    blocks?.[0]?.type === "text" && !blocks[0].heading
       ? blocks[0].body
       : "";
-  const apsIntroParagraphs = apsIntroSource
+  const introParagraphs = introSource
     .split(/\n\s*\n/g)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean)
     .slice(0, 3);
+  const useSplitLayout = introParagraphs.length > 0;
   const renderedBlocks =
-    useApsSplitLayout && apsIntroParagraphs.length > 0 && blocks
+    useSplitLayout && blocks
       ? blocks.slice(1)
       : blocks;
   const heroFigure = (
@@ -140,7 +140,7 @@ export function ProjectDetailPage() {
         <BackLink />
       </div>
 
-      {useApsSplitLayout ? (
+      {useSplitLayout ? (
         <>
           <div className="space-y-8 mb-14">
             <header className="space-y-2.5 md:space-y-3">
@@ -154,8 +154,8 @@ export function ProjectDetailPage() {
           </div>
 
           <section className="grid gap-7 md:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] md:items-start md:gap-10 mb-16 md:mb-20">
-            <div className="space-y-[32px]">
-              {apsIntroParagraphs.map((paragraph, index) => (
+            <div className="space-y-[32px] ui-text-pretty">
+              {introParagraphs.map((paragraph, index) => (
                 <p
                   key={index}
                   className={

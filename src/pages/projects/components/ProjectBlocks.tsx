@@ -303,7 +303,7 @@ function RenderQuote({ block }: { block: QuoteBlock }) {
 
 export function ProjectBlocks({ blocks }: { blocks: ContentBlock[] }) {
   return (
-    <div className="space-y-14">
+    <div className="space-y-14 ui-text-pretty">
       {blocks.map((block, i) => {
         switch (block.type) {
           case "text":

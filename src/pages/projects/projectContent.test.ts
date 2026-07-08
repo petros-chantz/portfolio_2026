@@ -16,8 +16,12 @@ import type {
 
 describe("PROJECT_LIST", () => {
   it("contains the current portfolio projects", () => {
-    expect(PROJECT_LIST.length).toBeGreaterThanOrEqual(5);
-    expect(PROJECT_LIST.map((project) => project.slug)).toContain("APS-allocations");
+    const slugs = PROJECT_LIST.map((project) => project.slug);
+    expect(PROJECT_LIST.length).toBeGreaterThanOrEqual(4);
+    expect(slugs).toContain("AgilityCloud-workspaces");
+    expect(slugs).toContain("procurement-tool");
+    expect(slugs).toContain("ordering-experiences");
+    expect(slugs).toContain("APS-allocations");
   });
 
   it("each project has required fields", () => {
@@ -42,9 +46,10 @@ describe("PROJECT_LIST", () => {
 
 describe("getProjectBySlug", () => {
   it("returns the correct project for a known slug", () => {
-    const project = getProjectBySlug("internal-ops-platform");
+    const knownSlug = PROJECT_LIST[0].slug;
+    const project = getProjectBySlug(knownSlug);
     expect(project).not.toBeNull();
-    expect(project?.slug).toBe("internal-ops-platform");
+    expect(project?.slug).toBe(knownSlug);
     expect(typeof project?.title).toBe("string");
   });
 
@@ -98,7 +103,7 @@ describe("getProjectSiblings", () => {
 
 describe("getProjectBlocks", () => {
   it("returns an array for a known slug", () => {
-    const blocks = getProjectBlocks("internal-ops-platform");
+    const blocks = getProjectBlocks(PROJECT_LIST[0].slug);
     expect(Array.isArray(blocks)).toBe(true);
   });
 
